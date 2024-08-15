@@ -1,0 +1,26 @@
+<div class="form-setting">
+    <div class="box-state d-flex align-items-center justify-content-between">
+        <p>{{degree.name}}</p>
+        <div class="d-flex align-items-center ">
+            <img [swal]="deleteSwal" src="../../../../../../../../assets/images/trash-event.svg" alt="trash-event" class="trash-event">
+            <img (click)="click(this.degree.id)" data-bs-toggle="modal" data-bs-target="#modalDegree" src="../../../../../../../../assets/images/edit.svg" alt="edit-event" class="edit-event">
+        </div>
+    </div>
+</div>
+        
+
+
+<swal
+#deleteSwal
+title="{{'Delete Action' | translate}}  {{ degree.name }} !!!"
+text="{{'Delete confirmation - All related information will be deleted.' | translate}}"
+imageUrl="/assets/images/Delete.gif"
+imageHeight="20vh"
+cancelButtonText="{{'Cancel' | translate}}"
+confirmButtonText="{{'Yes' | translate}}"
+confirmButtonColor="red"
+[showCancelButton]="true"
+[focusCancel]="true"
+(confirm)="delete()"
+>
+</swal>

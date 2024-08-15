@@ -1,0 +1,160 @@
+<div class="register-page">
+    <div class="flex-one">
+        <a class="back-login" [routerLink]="'../login'">
+            <img src="../../../../../../assets/images/arrow-left.svg" alt="back-login">
+            <span>Login</span>
+        </a>
+        <div class="image-logo">
+            <img src="/assets/logo.png" alt="logo">
+            <h4> {{'Sign up into your account' | translate}}</h4>
+        </div>
+        <div [style]="loading?'opacity: .8;pointer-events: none;filter: blur(1px);':''" [formGroup]="registerForm" class="form-register">
+            <div class="container-padding">
+                <div class="row">
+                    <!-- <div class="col-md-12 mb-3">
+                        <div class='file file--upload'>
+                            <label for='input-file'>
+                              <img [src]="img" alt="uploadImage" >
+                              <div>
+                                {{'Upload a photo' | translate}} 
+                                <span>PNG or JPG</span>
+                              </div>
+                            </label>
+                            <input (change)="onFileChange($event)" formControlName="image" id='input-file' type='file' />
+                            <em *ngIf="validation.validateControl('image')">{{'Required Input' | translate}}</em>  
+                        </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="internationalId">{{'Emirates ID' | translate}}</label>
+                            <div class="box-inputs">
+                                <input formControlName="internationalId" id="internationalId" name="internationalId" type="text" class="form-control" placeholder="ex. 000-0000-0000000-0">
+                                <span>#</span>
+                            </div>
+                            <em *ngIf="validation.validateControl('internationalId')">{{'Wrong Pattern' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="department">{{'Department' | translate}}</label>
+                            <i class="fal fa-chevron-down"></i>
+                            <select formControlName="departmentId" id="departmentId" name="departmentId" id="department" class="form-control">
+                                <option [value]="null">Select Department</option>
+                                <option *ngFor="let current of departments" [value]="current.id">{{current.name}}</option>
+                            </select>
+                            <em *ngIf="validation.validateControl('departmentId')">{{'Required Input' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">{{'Full name' | translate}}</label>
+                            <div class="box-inputs">
+                                <input formControlName="fullName" id="fullName" type="text" name="fullName" class="form-control" placeholder="Sultan bin Fahd">
+                                <span><i class="fal fa-user"></i></span>
+                            </div>
+                            <em *ngIf="validation.validateControl('fullName')">{{'Required Input' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="principality">{{'State' | translate}}</label>
+                            <i class="fal fa-chevron-down"></i>
+                            <select formControlName="principalityId" name="principalityId" id="principalityId" class="form-control">
+                                <option [value]="null">Select State</option>
+                                <option *ngFor="let current of principalities" [value]="current.id">{{current.name}}</option>
+                            </select>
+                            <em *ngIf="validation.validateControl('principalityId')">{{'Required Input' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">{{'E-mail' | translate}}</label>
+                            <div class="box-inputs">
+                                <input formControlName="email" type="email" name="email" id="email" class="form-control" placeholder="ex. info@imshah.com ">
+                                <span>@</span>
+                            </div>
+                            <em *ngIf="validation.validateControl('email')">{{'Required Input' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="employeeNumber">{{'Employee ID' | translate}}</label>
+                            <div class="box-inputs">
+                                <input formControlName="employeeNumber" type="text" name="employeeNumber" id="employeeNumber" class="form-control" placeholder="ex. 123456789">
+                                <span><i class="fal fa-file-alt"></i></span>
+                            </div>
+                            <em *ngIf="validation.validateControl('employeeNumber')">{{'Required Input' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="phoneNumber">{{'Mobile number' | translate}}</label>
+                            <div class="box-inputs">
+                                <input formControlName="phoneNumber" type="text" name="phoneNumber" id="phoneNumber" class="form-control" placeholder="ex. 0561234567">
+                                <span><img src="../../../../../../assets/images/phone.svg" alt=""></span>
+                            </div>
+                            <!-- <small style="font-size: x-small;">Numbers only</small> -->
+                            <em *ngIf="validation.validateControl('phoneNumber')">{{'Required Input' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group Worktime">
+                            <label for="worktime">{{'Worktime' | translate}}</label>
+                            <div class="d-flex align-items-center">
+                                <div class="box-inputs me-2">
+                                    <span>{{'From' | translate}}</span>
+                                    <input formControlName="startWorkTime" type="time" name="startDate" id="startDate" class="form-control">
+                                </div>
+                                <div class="box-inputs ms-2">
+                                    <span>{{'To' | translate}}</span>
+                                    <input formControlName="endWorkTime" type="time" name="endDate" id="endDate" class="form-control">
+                                </div>
+                            </div>
+                            <em *ngIf="validation.validateControl('startWorkTime')">{{'Required Input' | translate}}</em>
+                            <em *ngIf="validation.validateControl('endWorkTime')">{{'Required Input' | translate}}</em>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group pb-0">
+                            <label for="password">{{'Password' | translate}} : </label>
+                            <div class="box-inputs">
+                                <input autocomplete="off" id="password" formControlName="password" type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
+                                <span><img id="img-password" class="img-password" (click)="changeEye()" src="../../../../../../assets/images/eye-off.svg" alt=""></span>
+                            </div>
+                            <small style="font-size: x-small;">
+                                <ul>
+                                    <li [ngClass]="passValidation('length',registerForm.controls.password.value)?'text-success':'text-muted'">{{'At least 8 characters' | translate}}</li>
+                                    <li [ngClass]="passValidation('number',registerForm.controls.password.value)?'text-success':'text-muted'">{{'At least 1 number' | translate}}</li>
+                                    <li [ngClass]="passValidation('uppercase',registerForm.controls.password.value)?'text-success':'text-muted'">{{'At least 1 uppercase letter' | translate}}</li>
+                                    <li [ngClass]="passValidation('lowercase',registerForm.controls.password.value)?'text-success':'text-muted'">{{'At least 1 lowercase letter' | translate}}</li>
+                                    <li [ngClass]="passValidation('special',registerForm.controls.password.value)?'text-success':'text-muted'">{{'At least 1 special character (@, #, or !)' | translate}}</li>
+                                </ul>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button [disabled]="!registerForm.valid" (click)="submit()" type="button" class="login-button edit-login-button">Register now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-two">
+        <div class="register-back">
+            <h1>Follow up on the tasks <br>
+                assigned to you</h1>
+            <p>Volunteers. Agendas. Events</p>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- <ng-template #load>
+    <div class="row justify-content-between my-5">
+        <div class="col-md-6 my-5">
+            <h1 class="splash" data-text="Loading...">Loading...</h1>
+        </div>
+    </div>
+</ng-template> -->

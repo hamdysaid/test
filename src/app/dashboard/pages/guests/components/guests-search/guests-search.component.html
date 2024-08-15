@@ -1,0 +1,16 @@
+<div class="section-volunteer-tabs mb-3" [style]="loading?'opacity: .8;pointer-events: none;filter: blur(1px);':''">
+    <div class="tab-order"></div>
+    <div class="section-volunteer-filter">
+    
+         <div class="section-volunteer-search">
+            <i class="fal fa-search"></i>
+            <input type="text" (change)="submit()" [(ngModel)]="_guestService.search"  class="form-control" placeholder="{{'Search for Guests' | translate}}">
+         </div>
+
+       <button type="button" (click)="exprtToExcel()" id="btnFilter" class="btn-export">
+           <i class="fal fa-file-export me-2"></i>
+          {{'Export excel' | translate}}
+       </button>
+    </div>
+   
+ </div>

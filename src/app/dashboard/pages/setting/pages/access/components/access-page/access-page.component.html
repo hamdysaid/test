@@ -1,0 +1,54 @@
+<div id="Access" [ngClass]="language=='en'?'active':'active pagedirection'">
+    <div [formGroup]="formEmail" class="form-setting">
+        <div class="row border-bottom pb-3">
+            <div class="col-md-6">
+                <div *ngIf="getAllEmployee$ | async as employees else loading" class="form-group mt-1">
+                    <label for="employees" class="mb-2">{{'Employees' | translate}}</label>
+                    <ng-select formControlName="email" name="employees" id="employees" [multiple]="false">
+                        <ng-option *ngFor="let current of employees" [value]="current.email">
+                            <span>{{current.fullName}}</span>
+                            <small class="text-secondary"> {{current.email}}</small>
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button (click)="getSelectedEmplyeeClaims()" type="button" class="btn-send btn-access">{{'Get Access' | translate}}</button>
+            </div>
+        </div>
+        <div *ngIf="showForm else form">
+            <div *ngIf="getEmplyeeClaim$ | async as claims else loading">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn-send btn-access" type="button" (click)="selectAll()">{{hasSelect ? 'Unselect All' : 'Select All' | translate}}</button>
+                    </div>
+                </div>
+                <div [formGroup]="formAccess">
+                    <div class="row justify-conen-cener my-5">
+                        <div *ngFor="let calim of claims.response | keyvalue" class="col-md-3 form-group">
+                            <div class="box-inputs">
+                                <i class="ms-2"></i>
+                                <input class="mt-1" [formControlName]="calim.key" type="checkbox" [id]="calim.key">
+                                <i class="ms-2"></i>
+                                <label [for]="calim.key">{{calim.key}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button (click)="sendAccess()" type="button" class="btn-send btn-access">{{'Save Access' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p>Loading....</p>
+</ng-template>
+
+<ng-template #form>
+    <p class="template">{{'Select Employee' | translate}} ...</p>
+</ng-template>

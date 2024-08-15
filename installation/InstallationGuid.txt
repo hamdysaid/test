@@ -1,0 +1,4 @@
+- Super@gmail.com / Coding@1234? / P@ssw0rd
+- Install npm packages with --legacy-peer-deps
+- npm start
+- configuraitons inside environments folder

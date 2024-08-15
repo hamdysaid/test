@@ -1,0 +1,27 @@
+<div class="form-setting">
+    <div class="box-state d-flex align-items-center justify-content-between">
+        <p>
+            <span class="rad-div" [style]="{background: '#'+VolunteerStatus.color}"></span>
+            <span class="ms-4">{{VolunteerStatus.name}}</span>
+        </p>
+        <div class="d-flex align-items-center ">
+            <img [swal]="deleteSwal" src="../../../../../../../../assets/images/trash-event.svg" alt="trash-event" class="trash-event">
+            <img (click)="click(this.VolunteerStatus.id)" data-bs-toggle="modal" data-bs-target="#modalVolunteer" src="../../../../../../../../assets/images/edit.svg" alt="edit-event" class="edit-event">
+        </div>
+    </div>
+</div>
+ 
+<swal
+#deleteSwal
+title="{{'Delete Action' | translate}}   {{ VolunteerStatus.name }} !!!"
+text="{{'Delete confirmation - All related information will be deleted.' | translate}}"
+imageUrl="/assets/images/Delete.gif"
+imageHeight="20vh"
+cancelButtonText="{{'Cancel' | translate}}"
+confirmButtonText="{{'Yes' | translate}}"
+confirmButtonColor="red"
+[showCancelButton]="true"
+[focusCancel]="true"
+(confirm)="delete()"
+>
+</swal>

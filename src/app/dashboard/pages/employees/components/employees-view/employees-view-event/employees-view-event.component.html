@@ -1,0 +1,18 @@
+<div >
+    <div class="scrollbar-Volunteer" id="style-Volunteer">  
+          <div class="boxs-Volunteer">
+             <h3> {{'Event' | translate}} <span>({{events.length}})</span></h3>
+             <div *ngFor="let current of events" class="boxs-Event-height">
+                <img [src]="imagePath + current.hallImage" alt="Event image">
+                <h4>{{current.name}}</h4>
+                <p>{{current.description}}</p>
+                <div class="boxs-Event-height-flex d-flex align-items-center">
+                   <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="calendaradd" class="icon-svg">
+                   <span class="ps-0">{{current.startDate | date}} _ {{current.endDate | date}}</span>
+                   <img src="../../../../../../../../assets/images/locationModal.svg" alt="location" class="icon-svg">
+                   <span class="ps-0">{{current.locationHint}}</span>
+                </div>
+             </div>
+          </div>
+    </div>
+    </div>

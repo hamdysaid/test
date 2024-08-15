@@ -1,0 +1,46 @@
+<section class="home-table">
+    <div class="container-padding">
+     <div class="home-table-data border-rad">
+         <div class="home-table-list">
+            <table class="table table-borderd table-hover">
+            <thead>
+                  <tr>
+                     <th> {{'ID' | translate}}</th>
+                     <th>{{'Full name' | translate}}</th>
+                     <th>{{'E-mail' | translate}}</th>
+                     <th>{{'Mobile number' | translate}}</th>
+                     <th>{{'Country' | translate}}</th>
+                     <th>{{'Invitations' | translate}}</th>
+                     <th>{{'Approved' | translate}}</th>
+                  </tr>
+            </thead>
+            <tbody>
+               <tr
+               *ngFor="let current of _guestService.guestReportPagenatin.data | paginate
+                   : {
+                       id: 'server',
+                       itemsPerPage: _guestService.guestReportPagenatin.pagination.pageSize ,
+                       currentPage: _guestService.guestReportPagenatin.pagination.currentPage,
+                       totalItems: _guestService.guestReportPagenatin.pagination.rowCount
+                     }; let i = index;"
+               >
+               <td>  {{ _guestService.guestReportPagenatin.pagination.pageSize * (_guestService.guestReportPagenatin.pagination.currentPage - 1) + i + 1}}</td>
+               <td>{{current.fullName}}</td>
+               <td>{{current.email}}</td>
+               <td>{{current.phoneNumber}}</td>
+               <td>{{current.country}}</td>
+               <td>{{current.invitations}}</td>
+               <td>{{current.accepted}}</td>
+               </tr>
+            </tbody>
+            </table>
+            <pagination-controls
+                previousLabel="{{'Previous' | translate}}"
+                nextLabel="{{'Next' | translate}}"
+                (pageChange)="_guestService.getGuestReportPagenation($event)"
+                id="server"
+              ></pagination-controls>
+         </div>
+     </div>
+    </div>
+ </section>

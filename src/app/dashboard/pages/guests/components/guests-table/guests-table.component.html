@@ -1,0 +1,88 @@
+<div class="section-vlounteer-content section-employees">   
+    <section class="home-table">
+          <div class="home-table-data">
+             <div class="home-table-list">
+                <table class="table table-borderd table-hover">
+                <thead>
+                      <tr>
+                         <th> {{'ID' | translate}}</th>
+                         <th>{{'Full name' | translate}}</th>
+                         <th>{{'E-mail' | translate}}</th>
+                         <th>{{'Mobile number' | translate}}</th>
+                         <th>{{'Country' | translate}}</th>
+                         <th>{{'Invitations' | translate}}</th>
+                         <th>{{'Approved' | translate}}</th>
+                         <th>{{'Actions' | translate}}</th>
+                      </tr>
+                </thead>
+                <tbody>
+                   <tr
+                   *ngFor="let current of _guestService.guestReportPagenatin.data
+                | paginate
+                : {
+                    id: 'server',
+                    itemsPerPage: _guestService.guestReportPagenatin.pagination.pageSize ,
+                    currentPage: _guestService.guestReportPagenatin.pagination.currentPage,
+                    totalItems: _guestService.guestReportPagenatin.pagination.rowCount
+                  }
+                  ;let i = index;"
+                   >
+                      <td>{{ _guestService.guestReportPagenatin.pagination.pageSize * (_guestService.guestReportPagenatin.pagination.currentPage - 1) + i + 1}}</td>
+                      <!-- <td class="td-user">
+                        <img [src]="imagePath.normal + current.image"> {{current.fullName}}
+                      </td> -->
+                      <td class="td-user">
+                      {{current.fullName}}
+                      </td> 
+                      <td>{{current.email}}</td>
+                      <td>{{current.phoneNumber}}</td>
+                      <td>{{current.country}}</td>
+                      <td>{{current.invitations}}</td>
+                      <td>{{current.accepted}}</td>
+                                              <!-- <td class="td-status"><div class="circle" style="background: #197701;"></div> Approved</td> -->
+                      <td  class="td-actions">
+                         <!-- <img [swal]="activate" class="mx-1" (confirm)="changeActivation(current.email)" [src]="current.isActive? '../../../../../../assets/images/lock.svg': '../../../../../../assets/images/lock-off.svg'" alt="lock" id="lock"> -->
+                        <img [swal]="delete" (confirm)="deleteGuest(current.email)" src="../../../../../../assets/images/delete.svg" alt="delete">
+                        <!-- <img src="../../../../../../assets/images/GuestsEye.svg" alt="show" data-bs-toggle="modal" data-bs-target="#addGuestsModal"> -->
+                      </td>
+                   </tr>
+                </tbody>
+                </table>
+                <pagination-controls
+                previousLabel="{{'Previous' | translate}}"
+                nextLabel="{{'Next' | translate}}"
+                (pageChange)="_guestService.getPage($event)"
+                id="server"
+              ></pagination-controls>
+             </div>
+         </div>
+    </section>
+</div>
+<swal
+  #activate
+  title="{{'Change Activation !!!' | translate}}"
+  text="{{'Delete confirmation - All related information will be deleted.' | translate}}"
+  icon="question"
+  imageHeight="20vh"
+  cancelButtonText="{{'Cancel' | translate}}"
+  confirmButtonText="{{'Yes' | translate}}"
+  confirmButtonColor="red"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  >
+  </swal>
+
+
+  <swal
+  #delete
+  title="{{'Delete invitations' | translate}} !!!"
+  text="{{'Delete confirmation - All related information will be deleted.' | translate}}"
+  imageUrl="/assets/images/Delete.gif"
+  imageHeight="20vh"
+  cancelButtonText="{{'Cancel' | translate}}"
+  confirmButtonText="{{'Yes' | translate}}"
+  confirmButtonColor="red"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  >
+  </swal>

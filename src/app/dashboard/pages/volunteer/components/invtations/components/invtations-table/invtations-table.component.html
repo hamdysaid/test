@@ -1,0 +1,147 @@
+<div id="Invitations">
+   <section class="home-table">
+      <div class="container-padding">
+         <div class="home-table-data">
+            <div class="home-table-list">
+               <table class="table table-borderd table-hover">
+                  <thead>
+                     <tr>
+                        <th>{{'ID' | translate}}</th>
+                        <th>{{'Full name' | translate}}</th>
+                        <th>{{'E-mail' | translate}}</th>
+                        <th>{{'Job Title' | translate}}</th>
+                        <th>{{'Invitations hours' | translate}}</th>
+                        <th>{{'Invitations Start date' | translate}}</th>
+                        <th>{{'Invitations End date' | translate}}</th>
+                        <th>{{'StateLabel' | translate}}</th>
+                        <th>{{'StatusLabel' | translate}}</th>
+                        <th>{{'Actions' | translate}}</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let current of _invitationservice.pagenationEntities.data | paginate
+                   : {
+                       id: 'server',
+                       itemsPerPage: _invitationservice.pagenationEntities.pagination.pageSize ,
+                       currentPage: _invitationservice.pagenationEntities.pagination.currentPage,
+                       totalItems: _invitationservice.pagenationEntities.pagination.rowCount
+                     }; let i = index;">
+                        <td> {{ _invitationservice.pagenationEntities.pagination.pageSize * (_invitationservice.pagenationEntities.pagination.currentPage - 1) + i + 1}}</td>
+                        <td class="td-user">
+                           <img [src]="imagePath.normal+current.volunteerUser.image" alt=""> {{current.volunteerUser.fullName}}.
+                        </td>
+                        <td>{{current.volunteerUser.email}}</td>
+                        <td>{{current.jopTitle}}</td>
+                        <td>{{current.numberOfHours}}</td>
+                        <td>{{current.fromStart | date}}</td>
+                        <td>{{current.toEnd | date}}</td>
+                        <td>{{language=='en'? current.volunteerUser.principality.name : current.volunteerUser.principality.nameAR}}</td>
+                        <td class="td-status">
+                           <div class="circle" [style]="{background: '#'+current.status.color}"></div> {{language=='en'? current.status.name : current.status.nameAR}}
+                        </td>
+                        <td class="td-actions">
+                          <!-- <img *ngIf="!current.certificateCreated" (click)="ShowCertficateForm(current.id, current.proofCertificate)" src="../../../../../../../../assets/images/new.svg" alt="new">
+                           <img *ngIf="current.certificateCreated" src="../../../../../../../../assets/images/new.svg" class="check-success mx-1" alt="new">-->
+                           <img [swal]="delete" *ngIf="!current.certificateCreated" (confirm)="deleteInvitaion(current.id)" class="mx-1" src="../../../../../../../../assets/images/delete.svg" alt="delete">
+                           <a [routerLink]="'../volunteer-view/home/'+current.volunteerUser.email+'/invtations/'+current.volunteerUser.email"><img src="../../../../../../../../assets/images/eye.svg" alt="show"></a>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <pagination-controls previousLabel="{{'Previous' | translate}}" nextLabel="{{'Next' | translate}}" (pageChange)="_invitationservice.getPage($event)" id="server"></pagination-controls>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>
+
+
+<!--Modal Proof--->
+<ng-template #modalDetails let-close="close" class="modal fade modal-proof">
+   <div class="proof-modal">
+      <div class="modal-header">
+         <button type="button" (click)="_modalService.dismissAll()"><i class="fal fa-times"></i></button>
+      </div>
+      <div [formGroup]="certificateForm">
+         <div class="modal-body">
+            <div class="proof-modal-texts">
+               <img [src]="profimage" alt="back-proof" class="back-proof">
+               <p>
+                  <img src="../../../../../../../../assets/images/clock.svg" alt="clock">
+                  <span>{{'From' | translate}}</span>
+                  <span class="span-bold">08:00 AM</span>
+                  <span>{{'To' | translate}}</span>
+                  <span class="span-bold">05:00 PM</span>
+               </p>
+               <h4>Note : </h4>
+               <p>Ut autem et deleniti eum iste. Vitae doloribus dicta enim et iusto dicta at assumenda. Sint quia et tenetur nam cumque aut hic vero modi.</p>
+               <h4>Certificate : </h4>
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="file file--upload">
+                        <label for="imgCertificate">
+                           <img [src]="img" alt="uploadImage">
+                           <div>
+                              <p>Upload a Signature Image</p>
+                              <span>PNG</span>
+                           </div>
+                        </label>
+                        <input (change)="onFileChange($event)" formControlName="image" id="imgCertificate" type="file">
+                     </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                     <div class="form-group">
+                        <label for="fullName">{{'Full name' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="fullName" type="text" id="fullName" name="fullName" class="form-control">
+                           <span><i class="fal fa-user"></i></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6 mt-3">
+                     <div class="form-group">
+                        <label for="eventName">Event {{'Name' | translate}}</label>
+                        <input formControlName="eventName" type="text" id="eventName" name="eventName" class="input-proof form-control">
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="fullName">{{'Date' | translate}}</label>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="d-flex align-items-center date-box">
+                                 <span>{{'From' | translate}}</span>
+                                 <input formControlName="fromStart" type="date" class="form-control">
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="d-flex align-items-center date-box">
+                                 <span>{{'To' | translate}}</span>
+                                 <input formControlName="toEnd" type="date" class="form-control">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="numberHours">{{'Number hours' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="numberHours" type="text" id="numberHours" name="numberHours" class="form-control">
+                           <img src="../../../../../../../../assets/images/clock.svg" alt="clock">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer justify-content-center pt-0">
+            <button (click)="onSubmit()" type="button" class="btn-send">Create a certificate </button>
+            <button type="button" class="btn-hide" (click)="close()">{{'Cancel' | translate}}</button>
+         </div>
+      </div>
+   </div>
+</ng-template>
+
+<swal #delete title="{{'Delete invitations' | translate}} !!!" text="{{'Delete confirmation - All related information will be deleted.' | translate}}" imageUrl="/assets/images/Delete.gif" imageHeight="20vh" cancelButtonText="{{'Cancel' | translate}}" confirmButtonText="{{'Yes' | translate}}" confirmButtonColor="red" [showCancelButton]="true" [focusCancel]="true">
+</swal>

@@ -1,0 +1,102 @@
+<div id="MyInfo" >
+    <div [formGroup]="updateForm" class="form-setting">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class='file file--upload'>
+                    <label for='input-file'>
+                        <img [src]="img" alt="uploadImage">
+                        <div>
+                            {{'Upload a photo' | translate}}
+                            <span>PNG or JPG</span>
+                        </div>
+                    </label>
+                    <input #imgInput (change)="onFileChange(imgInput)" id='input-file' type='file' />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">{{'ID Employee' | translate}}</label>
+                    <div class="box-inputs">
+                        <input formControlName="employeeNumber" type="text" name="" id="" class="form-control" placeholder="123148">
+                        <span><img src="/assets/images/hashInfo.svg" alt=""></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">{{'Full name' | translate}}</label>
+                    <div class="box-inputs">
+                        <input formControlName="fullName" type="text" name="" id="" class="form-control" placeholder="Sultan bin Fahd">
+                        <span><img src="/assets/images/userInfo.svg" alt="MyInfo"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">{{'Mobile number' | translate}}</label>
+                    <div class="box-inputs">
+                        <input formControlName="phoneNumber" type="text" name="" id="" class="form-control" placeholder="Enter Mobile number..">
+                        <span><img src="/assets/images/phoneInfo.svg" alt=""></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">{{'E-mail' | translate}}</label>
+                    <div class="box-inputs">
+                        <input formControlName="email" type="text" name="" id="" class="form-control" placeholder="info@imshsh.com ">
+                        <span><img src="/assets/images/at-signInfo.svg" alt="@"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group Worktime">
+                    <label for="worktime">{{'Worktime' | translate}}</label>
+                    <div class="d-flex align-items-center">
+                        <div class="box-inputs me-2">
+                            <span>{{'From' | translate}}</span>
+                            <input formControlName="startWorkTime" type="time" name="startDate" id="startDate" class="form-control">
+                        </div>
+                        <div class="box-inputs ms-2">
+                            <span>{{'To' | translate}}</span>
+                            <input formControlName="endWorkTime" type="time" name="endDate" id="endDate" class="form-control">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="department">{{'Department' | translate}}</label>
+                    <i class="fal fa-chevron-down"></i>
+                    <select formControlName="departmentId" name="department" id="department" class="form-control">
+                        <option *ngFor="let current of departments" [value]="current.id">{{current.name}}</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="IDEmirates">{{'ID Emirates' | translate}}</label>
+                    <div class="box-inputs">
+                        <input formControlName="internationalId" type="text" name="IDEmirates" id="IDEmirates" class="form-control" placeholder="23423454 ">
+                        <span><img src="/assets/images/docInfo.svg" alt="docInfo"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">{{'State' | translate}}</label>
+                    <i class="fal fa-chevron-down"></i>
+                    <select formControlName="principalityId" name="department" id="department" class="form-control">
+                        <option *ngFor="let current of principalities" [value]="current.id">{{current.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button (click)="submit()" type="button" [disabled]="!updateForm.valid" class="btn-send m-auto d-block mt-4">{{'Edit' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

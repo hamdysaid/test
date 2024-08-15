@@ -1,0 +1,15 @@
+
+    <div class="chart-design" [ngClass]="language=='en'?'chart-design':'chart-design tableRtl'">
+       <h1> {{'Volunteer requests' | translate}}</h1>
+       <div class="chart-wrapper">
+         <canvas 
+         baseChart
+         [datasets]="barChartData"
+         [labels]="barChartsLabels"
+         [options]="barChartOptions"
+         [plugins]="barChartPlugins"
+         [legend]="barChartLegend"
+         [chartType]="barChartType"
+         ></canvas>
+    </div>
+  

@@ -1,0 +1,318 @@
+<section [ngClass]="language=='en'?'section-volunteer':'section-volunteer modaldirection'">
+   <div class="container-padding">
+      <div class="section-volunteer-header mb-5">
+         <h1>{{'Volunteer' | translate}}</h1>
+         <p>
+            <a href="/"><img src="../../../../../../../../assets/images/home2.svg" alt="home2">{{'Dashboard' |
+               translate}}</a>
+            <span><i class="fal fa-chevron-right"></i></span>
+            <a href="/dashboard/home/volunteer/volunteer-list">{{'Volunteer' | translate}}</a>
+            <span><i class="fal fa-chevron-right"></i></span>
+            <a class="a-active">{{'Volunteer View' | translate}}</a>
+         </p>
+      </div>
+      <app-volunteer-view-filter [statusId]="userResponse.status.id"></app-volunteer-view-filter>
+   </div>
+
+</section>
+<app-volunteer-view-box [userResponse]="userResponse"></app-volunteer-view-box>
+<section [ngClass]="language=='en'?'section-detalis-volounteer':'section-detalis-volounteer modaldirection'">
+   <div class="tab-order">
+      <a [routerLink]="'invtations/'+userResponse.email" routerLinkActive="active" class="b-nav-tab">
+         {{'Invitations' | translate}}
+      </a>
+      <a [routerLink]="'certificate/'+userResponse.email" routerLinkActive="active" class="b-nav-tab">
+         {{'Certificate' | translate}}
+      </a>
+   </div>
+   <div class="data-volunteer">
+      <router-outlet></router-outlet>
+   </div>
+</section>
+
+<!--Modal Add Volunteer--->
+<div class="modal fade modal-add-volunteer" id="addVolunteerModal" tabindex="-1"
+   aria-labelledby="addVolunteerModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div [ngClass]="language=='en'?'modal-content':'modal-content modaldirection'">
+         <div [formGroup]="invitationForm">
+            <div class="modal-body pt-0">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="">{{'Job Title' | translate}}</label>
+                        <input formControlName="jopTitle" type="text" class="form-control volunteer-input">
+                        <em *ngIf="validation.validateControl('jopTitle')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                     </div>
+                     <div class="form-group">
+                        <label for="jopTitleAR">{{'Job title AR' | translate}}</label>
+                        <input formControlName="jopTitleAR" type="text" class="form-control volunteer-input">
+                        <em *ngIf="validation.validateControl('jopTitleAR')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                     </div>
+                     <div class="form-group">
+                        <label for="description">{{'Description' | translate}}</label>
+                        <textarea formControlName="description" name="description" id="description"
+                           class="form-control volunteer-input"></textarea>
+                        <em *ngIf="validation.validateControl('description')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                     </div>
+                     <div class="form-group">
+                        <label for="descriptionAR">{{'DescriptionAR' | translate}}</label>
+                        <textarea formControlName="descriptionAR" name="descriptionAR" id="descriptionAR"
+                           class="form-control volunteer-input"></textarea>
+                        <em *ngIf="validation.validateControl('descriptionAR')"
+                           class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                     </div>
+                     <div class="form-group">
+                        <label for="volunteerTimes">{{'Volunteer times' | translate}}</label>
+                        <div class="d-flex align-items-center volunteerTimes">
+                           <div class="box-inputs me-3">
+                              <label for="startDate">From</label>
+                              <input formControlName="fromStart" type="date" class="form-control">
+                           </div>
+                           <div class="box-inputs">
+                              <label for="startDate">To</label>
+                              <input formControlName="toEnd" type="date" class="form-control">
+                           </div>
+                        </div>
+                        <em *ngIf="validation.validateControl('fromStart')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                        <br>
+                        <em *ngIf="validation.validateControl('toEnd')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="numberHours">{{'Number hours' | translate}}</label>
+                              <div class="box-icon">
+                                 <input formControlName="numberOfHours" type="text" class="form-control">
+                                 <img src="../../../../../../../../assets/images/clock.svg" alt="location">
+                              </div>
+                              <em *ngIf="validation.validateControl('numberOfHours')"
+                                 class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="numberDays">{{'Number days' | translate}}</label>
+                              <div class="box-icon">
+                                 <input formControlName="numberOfDays" type="text" class="form-control">
+                                 <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="location">
+                              </div>
+                              <em *ngIf="validation.validateControl('numberOfDays')"
+                                 class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="">{{'Volunteer days' | translate}}</label>
+                        <div class="row button-form">
+                           <select multiple formControlName="daysAsString" class="select-public">
+                              <option *ngFor="let current of dayOfWeek" [value]="current.id">{{language=='en'? current.nameOfDay : current.nameOfDayAr}}
+                              </option>
+                           </select>
+                        </div>
+                        <em *ngIf="validation.validateControl('daysAsString')"
+                           class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                     </div>
+                     <div class="form-group mt-4">
+                        <label for="volunteerDate">{{'Date' | translate}}</label>
+                        <div class="d-flex align-items-center volunteerTimes">
+                           <div class="box-inputs me-3">
+                              <label for="startDate">From</label>
+                              <input formControlName="start" type="time" class="form-control">
+                           </div>
+                           <div class="box-inputs">
+                              <label for="startDate">To</label>
+                              <input formControlName="end" type="time" class="form-control">
+                           </div>
+                        </div>
+                        <em *ngIf="validation.validateControl('start')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                        <br>
+                        <em *ngIf="validation.validateControl('end')" class="errorvalidationmessgae">{{'Required Input'
+                           | translate}}</em>
+                     </div>
+                     <div class="form-group">
+                        <label for="address">{{'Address' | translate}}</label>
+                        <div class="box-icon">
+                           <input formControlName="addressHint" type="text" class="form-control">
+                           <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+                        </div>
+                        <em *ngIf="validation.validateControl('addressHint')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                     </div>
+                     <div class="form-group">
+                        <label for="address">{{'Address Link' | translate}}</label>
+                        <div class="box-icon">
+                           <input formControlName="addressLink" type="text" class="form-control">
+                           <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+                        </div>
+                        <em *ngIf="validation.validateControl('addressLink')" class="errorvalidationmessgae">{{'Required
+                           Input' | translate}}</em>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+            <div class="modal-footer justify-content-center pt-0">
+               <button [disabled]="!invitationForm.valid" (click)="submitInvitation()" type="button" class="btn-send"
+                  data-bs-dismiss="modal">{{'Send' | translate}}</button>
+               <button type="button" class="btn-hide" data-bs-dismiss="modal">{{'Cancel' | translate}}</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--Modal Update Volunteer--->
+<!-- <div class="modal fade modal-add-volunteer" id="UpdateVolunteerModal" tabindex="-1" aria-labelledby="UpdateVolunteerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <+ form + [formGroup]="invitationForm" (ngSubmit)="submitInvitation()">
+            <input type="number" hidden formControlName="id">
+         <div class="modal-body pt-0">
+            <img src="../../../../../../../../assets/images/check-circle.svg" alt="check-circle" class="img-check check-success">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                          <label for="">{{'Job Title' | translate}}</label>
+                          <input type="text" class="form-control volunteer-input">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">{{'Description' | translate}}</label>
+                       <textarea name="description" id="description" class="form-control volunteer-input"></textarea>
+                    </div>
+                    <div class="form-group">
+                     <label for="volunteerTimes">{{'Volunteer times' | translate}}</label>
+                     <div class="d-flex align-items-center volunteerTimes">
+                           <div class="box-inputs me-3">
+                              <label for="startDate">From</label>
+                              <input type="time" class="form-control">
+                        </div>
+                           <div class="box-inputs">
+                              <label for="startDate">To</label>
+                              <input type="time" class="form-control">
+                        </div>
+                     </div>
+                  
+                    </div>
+                    <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label for="numberHours">{{'Number hours' | translate}}</label>
+                           <div class="box-icon">
+                              <input type="text" class="form-control">
+                              <img src="../../../../../../../../assets/images/clock.svg" alt="location">
+                           </div>
+                       </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label for="numberDays">{{'Number days' | translate}}</label>
+                           <div class="box-icon">
+                              <input type="text" class="form-control">
+                              <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="location">
+                           </div>
+                       </div>
+                     </div>
+                    </div>
+                 </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                           <label for="">{{'Volunteer days' | translate}}</label>
+                           <div class="row button-form">
+                           <div class="col-md-4 col-6">
+                              <button>Saturday</button>
+                           </div>
+                           <div class="col-md-4 col-6">
+                              <button>Sunday</button>
+                           </div>
+                           <div class="col-md-4 col-6">
+                              <button>Monday</button>
+                           </div>
+                           <div class="col-md-4 col-6">
+                              <button>Tuesday</button>
+                           </div>
+                           <div class="col-md-4 col-6">
+                              <button>Wednesday</button>
+                           </div>
+                           <div class="col-md-4 col-6">
+                              <button>Thursday</button>
+                           </div>
+                           <div class="col-md-4 col-6">
+                              <button>Friday</button>
+                           </div>
+                           </div>
+                     </div>
+                     <div class="form-group mt-4">
+                        <label for="volunteerDate">{{'Date' | translate}}</label>
+                        <div class="d-flex align-items-center volunteerTimes">
+                              <div class="box-inputs me-3">
+                                 <label for="startDate">From</label>
+                                 <input type="time" class="form-control">
+                           </div>
+                              <div class="box-inputs">
+                                 <label for="startDate">To</label>
+                                 <input type="time" class="form-control">
+                           </div>
+                        </div>
+                     
+                       </div>
+                       <div class="form-group">
+                        <label for="address">{{'Address' | translate}}</label>
+                        <div class="box-icon">
+                           <input type="text" class="form-control">
+                           <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+                        </div>
+                    </div>
+                  </div>
+                
+               </div>
+            </div>
+         </form>☻
+         <div class="modal-footer justify-content-center pt-0">
+            <button type="submit" class="btn-send" data-bs-dismiss="modal">{{'Edit' | translate}}</button>
+            <button type="button"  class="btn-hide" data-bs-dismiss="modal">{{'Cancel' | translate}}</button>
+            </div>
+      
+      </div>
+      </div>
+   </div> -->
+<!--Modal Show Certificate--->
+<!-- <div class="modal fade  show-certificate" id="showCertificateModal" tabindex="-1" aria-labelledby="showCertificateModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <img src="../../../../../../../../assets/images/check-circle.svg" alt="check-circle" class="img-check check-success">
+            < + form + action="">
+               <div class="show-certificate-texts">
+                  <img src="../../../../../../../../assets/images/logo-cert.svg" alt="logo-certificate" class="logo-certificate">
+                  <h4>{{'Volunteer Certificate' | translate}}</h4>
+                  <p>The volunteer work platform certifies that</p>
+                  <h2>Othman Osama Hamada</h2>
+                  <span>In appreciation of the effort he made in implementing the opportunity</span>
+                  <p>Organizing events</p>
+                  <h5>
+                     In which the volunteer provided (30) volunteer hours <br>
+                     from 11/22/2022 to 12/5/2022
+                  </h5>
+                  <img src="../../../../../../../../assets/images/signature.svg" alt="signature" class="signature">
+               </div>
+            </form>
+         </div>
+         <div class="modal-footer justify-content-center pt-0">
+            <button type="submit" class="btn-send" data-bs-dismiss="modal">Send </button>
+            <button type="button"  class="btn-hide" data-bs-dismiss="modal">Print</button>
+            </div>
+      
+      </div>
+      </div>
+   </div> -->

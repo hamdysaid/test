@@ -1,0 +1,14 @@
+<div class="view-style">
+<h4 class="border-bottom h-head">{{'Speakers' | translate}}</h4>
+<div *ngIf="eventSpeackers$ | async as responseSpeackers else loading" class="height-boxs-event">
+    <div *ngFor="let speaker of responseSpeackers.response"  class="box-speakers-details">
+        <img [src]="imgPath + speaker.image" alt="speakers">
+        <div class="box-speakers-text">
+             <h5>{{speaker.fullName}}</h5>
+             <p>{{speaker.specialization}}</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<ng-template #loading></ng-template>

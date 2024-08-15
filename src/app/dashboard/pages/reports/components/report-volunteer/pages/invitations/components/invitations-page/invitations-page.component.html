@@ -1,0 +1,16 @@
+
+<div class="section-volunteer-tabs">
+    <div class="tab-order">
+         <a [routerLink]="'../volunteer'" routerLinkActive="active" class="b-nav-tab">
+           {{'Volunteer data' | translate}}
+          </a>
+          <a [routerLink]="'../invitations'" routerLinkActive="active" class="b-nav-tab">
+           {{'Invitations' | translate}}
+          </a>
+    </div>
+    <app-invitations-search></app-invitations-search> 
+ </div>
+ <div class="section-vlounteer-content">
+    <app-invitations-filter></app-invitations-filter>
+    <app-invitations-table></app-invitations-table>
+</div>

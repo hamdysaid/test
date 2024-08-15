@@ -1,0 +1,125 @@
+<section  [ngClass]="language=='en'?'section-add-event':'section-add-event pagedirection'">
+   <div class="container-padding">
+      <div class="add-event">
+         <app-event-info></app-event-info>
+         <div class="add-eventNew">
+            <h2>{{'Event schedule' | translate}} :</h2>
+         </div>
+         <div class="row align-items-center border-bottom pb-3">
+            <div class="col-md-5">
+               <app-event-schedule-form></app-event-schedule-form>
+            </div>
+            <div class="col-md-7" id="boxs-events">
+               <app-event-schedule></app-event-schedule>
+            </div>
+         </div>
+         <div class="add-eventNew">
+            <h2 class="mb-3">{{'Speakers' | translate}} :</h2>
+         </div>
+         <div class="row align-items-center border-bottom pb-3">
+            <div class="col-md-5">
+               <app-event-speaker-form></app-event-speaker-form>
+            </div>
+            <div class="col-md-7" id="boxs-events">
+               <app-event-speaker></app-event-speaker>
+            </div>
+         </div>
+         <div class="add-eventNew">
+            <h2 class="mb-3">{{'Sponsors' | translate}} :</h2>
+         </div>
+         <div class="row align-items-center border-bottom pb-3">
+            <div class="col-md-5">
+               <app-event-sponsors-form></app-event-sponsors-form>
+            </div>
+            <div class="col-md-7" id="boxs-events">
+               <app-event-sponsors></app-event-sponsors>
+            </div>
+         </div>
+         <div class="add-eventNew">
+            <!-- <div class="row">
+                        <+ form + [formGroup]="form" (ngSubmit)="gotToEventDesign()">
+                           <div class="col-md-6">
+                              <div class="img-chair">
+                                     <img src="../../../../../../../../assets/images/chair.jpg" alt="chair">
+                              </div>
+                          </div>
+                         <div class="col-md-12">
+                            <div class="form-group">
+                               <label for="numberChairs" class="text-center d-block m-auto">Number chairs</label>
+                               <div class="box-input">
+                                  <input formControlName="numberofChair" class="form-control" type="number" min="0" value="10" placeholder="" id="numberChairs" name="numberChairs">
+                   
+                               </div>
+                            </div>
+                         </div>
+                  
+                         <div class="col-md-12">
+                            <div class="form-group m-auto">
+                               <button type="submit"  class="btn-send btn-next">Next</button>
+                            </div>
+                         </div>
+                        </form>
+                    </div> -->
+            <button (click)="gotToEventDesign()" class="btn-send btn-next">{{'Next' | translate}}</button>
+         </div>
+      </div>
+   </div>
+</section>
+
+<!-- modal Number Of Chairs -->
+<ng-template #modalNext let-close="close">
+   <div class="modal  modal-add-guests modal-add-chair" id="addGuestsModal" tabindex="-1" aria-labelledby="addGuestsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div class="modal-body pt-0">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="img-chair">
+                        <img src="../../../../../../../../assert/images/chair.jpg" alt="chair">
+                     </div>
+                  </div>
+                  <!-- <div class="col-md-12">
+                      <div class="form-group">
+                         <label for="numberChairs" class="text-center d-block m-auto">Number chairs</label>
+                         <div class="box-input">
+                            <input class="form-control" type="number" placeholder="" id="numberChairs" name="numberChairs">
+             
+                         </div>
+                      </div>
+                   </div> -->
+
+                  <div class="col-md-12">
+                     <div class="form-group m-auto">
+                        <button type="button" (click)="gotToEventDesign()" class="btn-send">{{'Next' | translate}}</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+</ng-template>
+<!-- modal Number Of Chairs -->
+<ng-template #modalSuccess let-close="close">
+   <div class=" modal-add-guests modal-add-chair" id="modalSuccess" tabindex="-1" aria-labelledby="modalSuccessLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div class="modal-body pt-0">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="img-chair">
+                        <img src="../../../../../../../../assert/images/Successful_event_add.gif" alt="Successful_event_add">
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <h2>{{'Successful' | translate}}</h2>
+                     <p>{{'The event is ready' | translate}}</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</ng-template>

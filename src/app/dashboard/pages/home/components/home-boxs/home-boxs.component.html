@@ -1,0 +1,100 @@
+<section class="boxs">
+    <div class="container-padding">
+       <div *ngIf="isAdmin" class="row">
+          <div class="col-md-3 col-6">
+             <div class="box-design color-1">
+                <div class="box-texts ">
+                   <h1>{{'Volunteer' | translate}}</h1>
+                   <p> {{'Current Value' | translate}}</p>
+                   <h2>{{VolunteerCurrentValue}}</h2>
+                </div>
+                <div class="box-img">
+                   <img src="../../../../../../assets/images/VolunteerChart.svg" alt="VolunteerChart">
+                </div>
+             </div>
+          </div>
+          <div class="col-md-3 col-6">
+             <div class="box-design color-2">
+                <div class="box-texts ">
+                   <h1>{{'Event' | translate}}</h1>
+                   <p>{{'Current Value' | translate}}</p>
+                   <h2>{{EventCurrentValue}}</h2>
+                </div>
+                <div class="box-img">
+                   <img src="../../../../../../assets/images/EventChart.svg" alt="VolunteerChart">
+                </div>
+             </div>
+          </div>
+          <div class="col-md-3 col-6">
+             <div class="box-design color-3">
+                <div class="box-texts">
+                   <h1>{{'Agenda' | translate}}</h1>
+                   <p>{{'Current Value' | translate}}</p>
+                   <h2>{{AgendaCurrentValue}}</h2>
+                </div>
+                <div class="box-img">
+                   <img src="../../../../../../assets/images/AgendaChart.svg" alt="VolunteerChart">
+                </div>
+             </div>
+          </div>
+          <div class="col-md-3 col-6">
+             <div class="box-design color-4">
+                <div class="box-texts ">
+                   <h1>{{'Employees' | translate}}</h1>
+                   <p>{{'Current Value' | translate}}</p>
+                   <h2>{{EmployeeCurrentValue}}</h2>
+                </div>
+                <div class="box-img">
+                   <img src="../../../../../../assets/images/EmployeesChart.svg" alt="VolunteerChart">
+                </div>
+             </div>
+          </div>
+       </div>
+       <div *ngIf="!isAdmin" class="row">
+         <div class="col-md-3 col-6">
+            <div class="box-design color-1">
+               <div class="box-texts">
+                  <h4>{{'Absence' | translate}}</h4>
+                  <p>{{'Days' | translate}}</p>
+                  <span>{{chart.absence}}</span>
+               </div>
+               <img src="../../../../../../../../assets/images/chartAbsence.svg" alt="chart Absence">
+            </div>
+     
+         </div>
+         <div class="col-md-3 col-6">
+            <div class="box-design color-2">
+               <div class="box-texts">
+                  <h4>{{'Attended' | translate}}</h4>
+                  <p>{{'Days' | translate}}</p>
+                  <span>{{chart.attended}}</span>
+               </div>
+               <img src="../../../../../../../../assets/images/chartAttended.svg" alt="chart Absence">
+            </div>
+     
+         </div>
+         <div class="col-md-3 col-6">
+            <div class="box-design color-3">
+               <div class="box-texts">
+                  <h4>{{'Sick leave' | translate}}</h4>
+                  <p>{{'Days' | translate}}</p>
+                  <span>{{chart.sick}}</span>
+               </div>
+               <img src="../../../../../../../../assets/images/SickleaveCahrt.svg" alt="chart Absence">
+            </div>
+     
+         </div>
+         <div class="col-md-3 col-6">
+            <div class="box-design color-4">
+               <div class="box-texts">
+                  <h4>{{'Annual Leave' | translate}}</h4>
+                  <p>{{'Days' | translate}}</p>
+                  <span>{{chart.annual}}</span>
+               </div>
+               <img src="../../../../../../../../assets/images/AnnualLeaveChart.svg" alt="chart Absence">
+            </div>
+     
+         </div>
+      </div>
+    </div>
+ </section>

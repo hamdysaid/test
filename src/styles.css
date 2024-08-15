@@ -1,0 +1,1225 @@
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+
+@font-face {
+  font-family: "Dubai Bold";
+  src: url(./assets/fonts/Dubai-Bold.ttf);
+}
+
+@font-face {
+  font-family: "Dubai Light";
+  src: url(./assets/fonts/Dubai-Light.ttf);
+}
+
+@font-face {
+  font-family: 'Dubai';
+  src: url(./assets/fonts/Dubai-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Dubai Medium";
+  src: url(./assets/fonts/Dubai-Medium.ttf);
+}
+
+@font-face {
+  font-family: "Cairo";
+  src: url(./assets/fonts/Cairo-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-1: #B68934;
+  --color-2: #B79308;
+  --color-3: #111111;
+  --color-4: #A3A3A3;
+  --color-5: #D9D9D9;
+}
+
+.swal2-title {
+  font-family: 'Cairo';
+}
+
+.btn-color {
+  cursor: pointer;
+  background: linear-gradient(268.66deg, #B79308 -15.62%, #B68934 101.46%);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.14);
+  font-family: 'Dubai';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 34px;
+  text-align: center;
+  color: #FFFFFF;
+  width: auto;
+  height: auto;
+  border: none;
+  padding: 5px 20px;
+}
+
+.btn-color-raduis {
+  border-radius: 10px;
+}
+
+.agenda-text h3,
+.agenda-text h2,
+.agenda-text table thead th,
+.agenda-text table tbody td,
+.agenda-text .cal-time {
+  font-family: 'Cairo';
+}
+
+.ng-star-inserted .cal-event-title {
+  display: block;
+  color: #000 !important;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cal-month-view .cal-open-day-events .cal-event-title {
+  font-family: 'Cairo';
+  display: block;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #ffffff !important;
+  padding: 10px 0;
+}
+
+.ng-tns-c13-1 {
+  margin-bottom: 10px;
+}
+
+.cal-event-actions a svg {
+  background: #fff;
+  border-radius: 4px;
+  padding: 5px;
+  color: #B68934;
+  margin-left: 10px;
+  font-family: 'Cairo';
+  font-size: 23px;
+  transition: 0.3s;
+}
+
+.style-agenda {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px 20px;
+}
+
+.cal-event-actions a svg:hover {
+  color: #fff;
+  background: #B68934;
+}
+
+.btn-color:hover {
+  background: linear-gradient(268.66deg, #8d7105 -15.62%, #7d5409 101.46%);
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+body {
+  position: relative;
+  transition: 0.3s;
+}
+
+.toast-message {
+  font-family: 'Cairo';
+}
+
+/* Dashboard Page 1 */
+/* Section Boxs */
+.boxs .container-padding {
+  padding: 15px 40px;
+}
+
+.box-texts h1 {
+  font-family: 'Dubai Medium';
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 42px;
+  text-align: left;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.box-texts p {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 5px;
+  text-transform: capitalize;
+  color: #838383;
+}
+
+.box-texts h2 {
+  font-family: 'Dubai Medium';
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 42px;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.box-design {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 20px;
+  border-radius: 15px;
+  height: 141px;
+  justify-content: space-between;
+}
+
+.box-design .box-img img {
+  width: 100px;
+  height: 31px;
+}
+
+.color-1 {
+  background: #B4E5BC !important;
+}
+
+.color-2 {
+  background: #CCC1F0 !important;
+}
+
+.color-3 {
+  background: #F3ABA7 !important;
+}
+
+.color-4 {
+  background: #F4CE9B !important;
+}
+
+@media (max-width:1000px) {
+  .boxs .container-padding {
+    padding: 10px;
+  }
+
+  .box-design .box-img img {
+    width: 100%;
+  }
+
+  .box-design {
+    height: 150px;
+    margin-bottom: 10px;
+  }
+
+  .box-img {
+    display: none;
+  }
+
+  .box-texts h1 {
+    font-size: 20px;
+  }
+
+  .box-texts p {
+    font-size: 12px;
+  }
+}
+
+.many-feature .container-padding {
+  padding: 20px 40px;
+}
+
+.many-feature .container-padding .many-feature-flex1 {
+  padding: 15px;
+
+  background: #FFFFFF;
+  border-radius: 15px;
+}
+
+.scrollbar {
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+  height: 330px;
+  overflow-y: scroll;
+  border-radius: 15px;
+}
+
+.force-overflow {
+  min-height: 274px;
+}
+
+#style-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #B68934;
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px #B68934;
+  background-color: #B68934;
+}
+
+.many-feature .container-padding .many-feature-flex1 .flex-dateTime {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.4);
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.many-feature-flex1 .flex-dateTime h1 {
+  font-family: 'Dubai Medium';
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.flex-dateTime a {
+  font-family: 'Dubai';
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.02em;
+  text-decoration-line: underline;
+  color: #B68934;
+}
+
+.many-feature-flex1 .flex-boxs {
+  padding: 5px 9px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.many-feature-flex1 .flex-boxs h1 {
+  font-family: 'Dubai Medium';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 17px;
+  text-align: left;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.many-feature-flex1 .flex-boxs p {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: -0.33px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.many-feature-flex1 .flex-boxs-users {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.many-feature-flex1 .flex-boxs-users h5 {
+  font-family: 'Dubai Medium';
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 10px;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.many-feature-flex1 .flex-boxs-users a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.many-feature-flex1 .flex-boxs-users a img {
+  width: 15px;
+  height: 15px;
+  margin: 0 3px;
+}
+
+.many-feature .event-sec {
+  background: url(./assets/images/back-home-event.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 15px;
+  height: 330px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.many-feature .event-sec a {
+  display: block;
+  text-align: right;
+  font-family: 'Dubai Bold';
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: -0.02em;
+  text-decoration-line: underline;
+  color: #FFFFFF;
+}
+
+@media (max-width:1000px) {
+  .many-feature .container-padding {
+    padding: 10px;
+  }
+}
+
+.event-sec-texts h1 {
+  font-family: 'Dubai Bold';
+  font-size: 16px;
+  line-height: 27px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+}
+
+.event-sec-texts p {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 17px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+  padding-bottom: 0px;
+}
+
+.event-sec-dateTime {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.event-sec-dateTime img {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.event-sec-dateTime p {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 17px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+}
+
+.home-table .container-padding {
+  padding: 0px 40px 30px 40px;
+
+}
+.tableRtl
+{
+  text-align: right;
+}
+
+.home-table .home-table-data {
+  padding: 20px;
+  background: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.home-table .home-table-data h1 {
+  font-family: 'Dubai Medium';
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 37px;
+  color: #080D1C;
+}
+
+.home-table .home-table-data .home-table-list {
+  overflow-x: auto;
+}
+
+.home-table .home-table-data .home-table-list table th {
+  font-family: 'Dubai Medium';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
+  text-align: center;
+  color: #2E2E2E;
+}
+
+.home-table .home-table-data .home-table-list table td {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+}
+
+.td-status .circle {
+  width: 8.77px;
+  height: 9.7px;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-flex;
+  margin-top: 3px;
+  margin: 0px;
+}
+
+.circle-select {
+  width: 8.77px;
+  height: 9.7px;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-flex;
+  margin-top: 3px;
+  margin: 0px;
+}
+
+.home-table-list table td {
+  padding-top: 15px;
+}
+
+.home-table-list table tr:last-child {
+  border-bottom: 1px solid #fff !important;
+}
+
+.home-table .home-table-data .home-table-list table .td-user {
+  text-align: left;
+  padding-left: 3rem;
+  width: 200px;
+}
+
+.home-table .home-table-data .home-table-list table .td-user img {
+  width: 30.18px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.home-table .home-table-data .home-table-list table .td-actions img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  filter: invert(49%) sepia(90%) saturate(325%) hue-rotate(1deg) brightness(96%) contrast(91%);
+}
+
+.chart-design {
+  background: #FFFFFF;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+}
+
+.chart-design h1 {
+  font-family: 'Dubai';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #5E5873;
+  padding-left: 20px;
+}
+
+.s-sidebar__nav button svg {
+  color: rgb(197, 2, 2);
+  font-size: 30px;
+  text-align: right;
+}
+
+.s-sidebar__nav button {
+  margin-top: 10px;
+  text-align: right;
+  display: none;
+  margin-left: auto;
+  margin-right: 30px;
+  border: none;
+  background: #fff;
+}
+
+.modal-agenda .flex-agenda {
+  display: flex;
+}
+
+.modal-agenda .flex-agenda p {
+  font-family: 'Dubai';
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 17px;
+  letter-spacing: 1px;
+  color: #000000;
+  margin: 0 4px;
+}
+
+.modal-agenda .modal-title {
+  padding-left: 30px;
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 34px;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.modal-agenda .btn-close {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+
+}
+
+.modal-agenda .modal-header {
+  align-items: start !important;
+  border-bottom: none;
+}
+
+.modal-agenda .modal-body-agenda .p-header {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-agenda .modal-body-agenda h3 {
+  font-family: 'Dubai';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 34px;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.modal-agenda .modal-body-agenda .card-agenda {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.modal-agenda .modal-body-agenda .card-agenda h4 {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.modal-agenda .modal-body-agenda .card-agenda .flex-card-agenda {
+  display: flex;
+  align-items: center;
+}
+
+.modal-agenda .modal-body-agenda .card-agenda p {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 17px;
+  letter-spacing: 1px;
+  color: #858585;
+  margin: 0 5px;
+}
+
+.modal-agenda .modal-body-agenda .card-agenda .photo-user img {
+  border-radius: 10px;
+  width: 63px;
+  height: 62px;
+  margin-right: 10px;
+}
+
+@media (min-width: 576px) {
+  .modal-agenda .modal-dialog {
+    max-width: 600px !important;
+  }
+}
+
+@media (max-width:1000px) {
+  .chart-design {
+    margin-bottom: 20px;
+  }
+
+  .scrollbar {
+    margin-bottom: 30px;
+  }
+
+  .home-table .container-padding {
+    padding: 10px;
+  }
+
+  .many-feature .event-sec {
+    border-radius: 15px;
+  }
+
+  .s-sidebar__nav button {
+    display: block;
+  }
+
+  .modal-agenda .modal-header {
+    flex-direction: column;
+  }
+}
+
+/* Modal Delete */
+.modal-delete .modal-body {
+  font-family: 'Dubai';
+  text-align: center;
+}
+
+.modal-delete .modal-body h5 {
+  font-family: 'Dubai Bold';
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 42px;
+  color: #000000;
+}
+
+.modal-delete .modal-body p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 34px;
+  color: #7D7D7D;
+}
+
+.modal-delete .modal-header .btn-close {
+  margin: -0.5rem auto -0.5rem -0.5rem;
+}
+
+.modal-delete .modal-body img {
+  width: 157px;
+  height: 145px;
+  display: block;
+  margin: auto;
+}
+
+.modal-delete .btn-delete {
+  font-family: 'Dubai Medium';
+  background: linear-gradient(268.66deg, #B68934 -15.62%, #B79308 101.46%);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+  text-align: center;
+  border: none;
+  width: 180.17px;
+  height: 46px;
+  color: #fff;
+}
+
+.btn-hide {
+  font-family: 'Dubai Medium';
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #000000;
+  width: 180.17px;
+  height: 46px;
+  color: #000000;
+  transition: 0.3s;
+}
+
+.btn-hide:hover {
+  background: linear-gradient(268.66deg, #B68934 -15.62%, #B79308 101.46%);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.14);
+  color: #fff;
+}
+
+.modal-delete .modal-footer {
+  border-top: none;
+}
+
+/* File Image */
+.file {
+  position: relative;
+  display: block;
+}
+
+.file>input[type='file'] {
+  display: none
+}
+
+.file>label {
+  cursor: pointer;
+  outline: 0;
+  user-select: none;
+  border: 0.5px solid #A3A3A3;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: hsl(0, 0%, 100%);
+  color: #000000;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.file label img {
+  margin-right: 15px;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 10px;
+
+}
+
+.file>label:hover {
+  border-color: hsl(0, 0%, 21%);
+}
+
+.file>label:active {
+  background-color: hsl(0, 0%, 96%);
+}
+
+.file>label>i {
+  padding-right: 5px;
+}
+
+.file--upload>label {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  text-align: left;
+  letter-spacing: 1px;
+  color: #000000;
+  background: rgba(217, 217, 217, 0.2);
+  border: 0.5px solid #A3A3A3;
+  border-radius: 10px;
+}
+
+.file--upload>label p {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #000000;
+}
+
+.file--upload>label p {
+  font-family: 'Dubai';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  letter-spacing: 1px;
+  color: #000000;
+  margin-bottom: 0pc;
+}
+
+.file--upload>label span {
+  font-family: 'Dubai';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.file--upload>label:hover {
+  background: rgba(197, 197, 197, 0.2);
+}
+
+.file--upload>label:active {
+  background-color: hsl(204, 86%, 91%);
+}
+
+.modal-content {
+  border-radius: 15px !important;
+}
+
+.section-volunteer .section-volunteer-header h1 {
+  font-family: 'Dubai Medium';
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 42px;
+  color: #151515;
+}
+
+.section-volunteer .section-volunteer-header a {
+  font-family: 'Dubai';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+}
+
+.section-volunteer .section-volunteer-header img {
+  width: 18px;
+  margin-top: -3px;
+  height: 16px;
+  filter: invert(72%) sepia(0%) saturate(1%) hue-rotate(21deg) brightness(88%) contrast(90%);
+}
+
+.section-volunteer .container-padding {
+  padding: 7px 20px;
+}
+
+.section-volunteer .section-volunteer-header .fa-chevron-right {
+  width: 15px;
+  height: 13px;
+}
+
+.section-volunteer .section-volunteer-header .a-active {
+  color: #B68934;
+  font-family: 'Dubai Medium';
+}
+
+.form-control:focus:focus {
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.btn-send {
+  background: linear-gradient(268.66deg, #B79308 -15.62%, #B68934 101.46%);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+  height: 48px;
+  font-family: 'Dubai';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 34px;
+  text-align: center;
+  color: #FFFFFF;
+  width: 180.17px;
+  border: none;
+}
+
+.btn-send:hover {
+  background: linear-gradient(268.66deg, #8d7105 -15.62%, #7d5409 101.46%);
+}
+
+.border-left {
+  border-left: 0.5px solid #989898;
+  margin: 0 20px;
+}
+
+/* language picker */
+.language-picker__flag--english::before {
+  background-position: center;
+  background-size: cover;
+  width: 30px !important;
+}
+
+.language-picker__flag--arabic::before {
+  background-position: center;
+  background-size: cover;
+  width: 30px !important;
+}
+
+.language-picker__flag {
+  font-family: 'Dubai';
+}
+
+.language-picker__button {
+  border: none !important;
+}
+
+.ngx-pagination .current {
+  background-color: #B68934 !important;
+  border-radius: 5px;
+}
+
+.ngx-pagination a,
+.ngx-pagination button {
+  font-family: 'Cairo';
+}
+
+#server nav {
+  display: flex;
+  align-items: center;
+}
+
+#server nav ul {
+  margin-left: auto !important;
+}
+
+.ng-option,
+.ng-select-container {
+  font-family: 'Cairo';
+}
+
+.select-public {
+  background: rgba(217, 217, 217, 0.2);
+  border: 0.5px solid #A3A3A3;
+  border-radius: 10px;
+  height: 150px !important;
+  width: 100%;
+  padding: 20px 0px;
+}
+
+.select-public option {
+  font-family: 'Cairo';
+  padding: 2px 7px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Cairo';
+  display: block;
+  float: left;
+  width: 28%;
+  margin-bottom: 10px !important;
+  margin: 0 7px;
+}
+
+.modal-dialog-centered {
+  margin: 0px !important;
+}
+
+img {
+  font-family: 'Cairo';
+  font-size: 12px;
+}
+
+.btn-primary {
+  background-color: #B68934 !important;
+  border: 1px solid #B68934 !important;
+}
+
+.btn-primary:hover {
+  background-color: #a0772c !important;
+}
+
+a,
+button,
+img {
+  cursor: pointer;
+}
+
+.language-selector__container select {
+  background-color: white;
+  border: 1px solid #c5c5c5;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #3e3d40;
+  display: block;
+  font-family: 'Cairo';
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  min-width: 80px;
+  padding: 0 20px 0 16px;
+  position: absolute;
+  right: 20px;
+  top: -30px;
+  outline: none;
+  cursor: pointer;
+}
+
+.language-selector__container label {
+  position: relative;
+}
+
+.language-selector__container label:after {
+  content: '';
+  left: 54px;
+  top: 17px;
+  padding: 0 0 2px;
+  position: absolute;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 5px solid #007fd8;
+  z-index: 100;
+  display: none;
+}
+
+.language-selector__container label:before {
+  content: '';
+  left: 56px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  position: absolute;
+  pointer-events: none;
+  display: block;
+  z-index: 1;
+}
+
+#btnFilter {
+  width: auto !important;
+}
+
+.s-sidebar__nav-link span:lang(ar) {
+  font-family: 'Cairo' !important;
+}
+
+.btn-ex,
+.btn-dan {
+  width: 100% !important;
+}
+
+.btn-dan {
+  background: rgb(165, 3, 3);
+}
+
+.btn-ex {
+  background: rgb(0, 0, 0);
+}
+
+body:lang(ar),
+.home-table .home-table-data:lang(ar),
+.home-table-list table th:lang(ar),
+button:lang(ar),
+a:lang(ar),
+input:lang(ar),
+.dropdown-container a:lang(ar),
+label:lang(ar),
+select:lang(ar),
+span:lang(ar),
+option:lang(ar),
+.box-texts h1:lang(ar),
+.box-texts p:lang(ar),
+.section-volunteer .section-volunteer-header h1:lang(ar),
+li:lang(ar),
+.form-setting h1:lang(ar) {
+  font-family: 'Cairo' !important;
+}
+
+.box-texts p:lang(ar) {
+  margin-bottom: 1rem;
+}
+
+.box-texts h1:lang(ar) {
+  font-size: 12px;
+  letter-spacing: 0px;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.section-volunteer .section-volunteer-header h1:lang(ar) {
+  font-weight: 700;
+}
+
+.box-design:lang(ar),
+.section-volunteer-header:lang(ar),
+.section-volunteer-filter:lang(ar),
+.section-volunteer-tabs:lang(ar),
+.dir-row:lang(ar),
+.template:lang(ar),
+table:lang(ar),
+.add-eventNew h2:lang(ar),
+.btn-color:lang(ar) {
+  font-family: 'Cairo' !important;
+  direction: rtl;
+}
+
+table td:lang(ar) {
+  text-align: center !important;
+}
+
+.tab img:lang(ar) {
+  margin-right: 0px;
+  margin-left: 20px;
+}
+
+#btnFilter:lang(ar) {
+  margin-right: 10px;
+}
+
+.header-nav-text h4:lang(ar),
+.header-nav-text p:lang(ar) {
+  direction: rtl;
+  text-align: left;
+  font-family: 'Cairo' !important;
+}
+
+.form-group label:lang(ar),
+.add-eventNew h2:lang(ar) {
+  text-align: right;
+  display: block;
+  direction: rtl;
+}
+
+.box-input:lang(ar) {
+  direction: rtl;
+  padding: 0 0px;
+}
+
+.form-setting label:lang(ar) {
+  margin-bottom: 1rem;
+}
+
+.box-state p span:last-child:lang(ar) {
+  padding-right: 1.5rem;
+}
+
+.form-setting .box-inputs:lang(ar) {
+  padding: 0 5px 0 15px !important;
+}
+
+.trash-event:lang(ar) {
+  margin-right: 175px;
+}
+.edit-event:lang(ar) {
+  margin-right: 175px;
+}
+
+#Status:lang(ar) {
+  padding-left: 10px;
+}
+
+.form-register .form-group .box-inputs:lang(ar) {
+  direction: ltr !important;
+}
+
+.form-register .form-group label:lang(ar) {
+  font-size: 12px !important;
+}
+
+.login .text-login .form-group .box-input:lang(ar) {
+  direction: ltr !important;
+}
+
+.login .text-login .form-group label:lang(ar) {
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Date Picker  date format work around */
+/* input[type="date"] {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+}
+
+input[type="date"]:before {
+  position: absolute;
+  content: attr(data-date);
+  color: black;
+  background-color: #f5f5f5;
+  padding: 2px;
+} */
+
+/* input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  pointer-events: all;
+} */

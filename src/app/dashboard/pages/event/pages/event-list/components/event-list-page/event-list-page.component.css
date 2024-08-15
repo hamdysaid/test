@@ -1,0 +1,81 @@
+.modal-choose [type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.modal-choose [type="radio"]:checked + label,
+.modal-choose [type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+.modal-choose [type="radio"]:checked + label:before,
+.modal-choose [type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+.modal-choose [type="radio"]:checked + label:after,
+.modal-choose [type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #B68934;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.modal-choose [type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.modal-choose [type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.modal-choose{
+    font-family: 'Cairo';
+    font-size: 20px;
+}
+.modal-choose label{
+    display: block;
+}
+.label-head{
+    font-family: 'Dubai Bold'; 
+}
+.modal-choose .modal-body{
+    position: relative;
+}
+.modal-choose .icon-style{
+    position: absolute;
+    top: -2px;
+    right: 0px;
+    background: red;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 23px;
+}
+a{
+    cursor: pointer;
+}
+.modal-choose .modal-footer{
+    font-size: 16px;
+}
+.filterdirection{
+    direction: rtl;
+}

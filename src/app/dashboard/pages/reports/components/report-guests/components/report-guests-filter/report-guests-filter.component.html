@@ -1,0 +1,52 @@
+<div [ngClass]="language=='en'?'filter-top mt-3 border-rad':'filter-top mt-3 border-rad pagedirection'">
+    <div class="row align-items-end">
+     <div class="col-md-4">
+         <div class="form-group">
+            <label for="country"> {{'Country or Guest Name' | translate}}</label>
+          <input id="country" [(ngModel)]="_guestService.search" type="text" class="form-control" >
+            <!-- <label for="country">{{'Country' | translate}}</label>
+            <select name="country" id="country">
+               <option value="" selected>All</option>
+               <option value="">All</option>
+               <option value="">All</option>
+            </select> -->
+         </div>
+      </div>
+       <!-- <div class="col-md-2">
+          <div class="form-group">
+             <label for="invitations">Invitations</label>
+             <select name="invitations" id="invitations">
+                <option value="" selected>All</option>
+                <option value="">All</option>
+                <option value="">All</option>
+             </select>
+          </div>
+       </div> -->
+       <div class="col-md-4">
+         <div *ngIf="guestStatus$ | async as statuses else loading" class="form-group">
+            <label for="approved">{{'StatusLabel' | translate}}</label>
+            <ng-select [(ngModel)]="_guestService.statusId" name="approved" id="approved">
+               <ng-option *ngFor="let current of statuses.response.data" [value]="current.id">{{language=='en'? current.name : current.nameAR}}</ng-option>
+            </ng-select>
+         </div>
+      </div>
+      <!-- <div class="col-md-2">
+         <div class="form-group">
+            <label for="employee">Employee</label>
+            <select name="employee" id="employee">
+               <option value="" selected>All</option>
+               <option value="">All</option>
+               <option value="">All</option>
+            </select>
+         </div>
+      </div> -->
+       <div class="col-md-2">
+           <div class="form-group">
+               <button type="button" (click)="onClick()">{{'Show results' | translate}}</button>
+           </div>
+       </div>
+    </div>
+
+ </div>
+
+ <ng-template #loading></ng-template>

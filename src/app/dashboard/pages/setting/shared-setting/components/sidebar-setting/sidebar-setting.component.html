@@ -1,0 +1,28 @@
+<div class="column-one">
+    <ul class="tabs">
+        <li class="tab" [routerLink]="'my-info'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/MyInfo.svg" alt="My Info"> {{'My info' | translate}}
+        </li>
+        <li *ngIf="_userService.isInRole('SuperAdmin')" class="tab" [routerLink]="'access'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/Access.svg" alt="Access"> {{'Access' | translate}}
+        </li>
+        <li *ngIf="_userService.isInRole('SuperAdmin')" class="tab" [routerLink]="'state'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/stateTab.svg" alt="state">{{'StateLabel' | translate}}
+        </li>
+        <li *ngIf="_userService.isInRole('SuperAdmin')" class="tab" [routerLink]="'department'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/Department.svg" alt="Department">{{'Department' | translate}}
+        </li>
+        <li *ngIf="_userService.isInRole('SuperAdmin')" class="tab" [routerLink]="'degree'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/Degree.svg" alt="Degree">{{'Degree' | translate}}
+        </li>
+        <!-- <li *ngIf="_userService.isInRole('SuperAdmin')" class="tab" [routerLink]="'app-setting'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/AppSettings.svg" alt="App Settings">{{'App settings' | translate}}
+        </li> -->
+        <li class="tab" [routerLink]="'password'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/userPassword.svg" alt="">{{'Password' | translate}}
+        </li>
+        <li *ngIf="_userService.isInRole('SuperAdmin')" class="tab" [routerLink]="'status'" routerLinkActive="active">
+            <img src="../../../../../../../assets/images/Status.svg" alt="Status">{{'StatusLabel' | translate}}
+        </li>
+    </ul>
+</div>

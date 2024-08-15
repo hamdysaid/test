@@ -1,0 +1,45 @@
+<div id="State">
+    <app-form></app-form>
+    <div class="row mt-4 border-bottom">
+        <div class="col-md-4" *ngFor="let current of this._princeService.entities">
+            <app-card [principalitie]="current"></app-card>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalState" tabindex="-1" aria-labelledby="modalStateLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Edit State' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="_popup.getForm()" [formGroup]="_popup.getForm()" class="form-setting">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'State' | translate}}</label>
+                                <input formControlName="name" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'StateAR' | translate}}</label>
+                                <input formControlName="nameAR" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-bs-dismiss="modal" (click)="submit()" type="button" class="btn-send btn-access">{{'Save State' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

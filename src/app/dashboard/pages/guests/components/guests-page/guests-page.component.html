@@ -1,0 +1,131 @@
+<section class="section-volunteer">
+   <div class="container-padding">
+      <div class="section-volunteer-header">
+         <h1>{{'Guests' | translate}}</h1>
+         <p>
+            <a href="/"><img src="../../../../../../assets/images/home2.svg" alt="home2">{{'Dashboard' | translate}}</a>
+            <span><i class="fal fa-chevron-right"></i></span>
+            <a class="a-active">{{'Guests' | translate}}</a>
+         </p>
+      </div>
+
+      <app-guests-search></app-guests-search>
+      <app-guests-table></app-guests-table>
+
+   </div>
+</section>
+
+
+<!-- Modal Delete -->
+<div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body pt-0">
+            <img src="../../../../../../assets/images/Delete.gif" alt="Delete">
+            <h5>Delete</h5>
+            <p>Are sure of the deleting process?</p>
+         </div>
+         <div class="modal-footer justify-content-center pt-0">
+            <button type="button" class="btn-delete" data-bs-dismiss="modal">{{'Delete' | translate}}</button>
+            <button type="button" class="btn-hide" data-bs-dismiss="modal">{{'Cancel' | translate}}</button>
+         </div>
+
+      </div>
+   </div>
+</div>
+<!--Modal Add guests--->
+<div class="modal fade modal-add-guests" id="addGuestsModal" tabindex="-1" aria-labelledby="addGuestsModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="modal-header-flex">
+               <img src="../../../../../../assets/images/char.svg" alt="char">
+               <input type="text" value="2" readonly>
+               <span>/</span>
+               <input type="text" value="5" readonly>
+            </div>
+            <button><i class="fal fa-crown"></i></button>
+         </div>
+         <div class="modal-body pt-0">
+            <div class="row">
+               <div class="col-md-12 mb-3">
+                  <div class='file file--upload'>
+                     <label for='input-file'>
+                        <img src=".../../../../../../assets/images/uploadImage.svg" alt="uploadImage">
+                        <div>
+                           {{'Upload a photo' | translate}}
+                           <span>PNG or JPG</span>
+                        </div>
+                     </label>
+                     <input id='input-file' type='file' />
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="nameGuest">{{'Name guest' | translate}}</label>
+                     <div class="box-input">
+                        <input class="form-control" type="text" placeholder="Hazza bin Mahmoud" id="nameGuest" name="nameGuest">
+                        <span><i class="fal fa-user"></i></span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="email">{{'E-mail' | translate}}</label>
+                     <div class="box-input">
+                        <input class="form-control" type="email" placeholder="info@imshsh.com" id="email" name="email">
+                        <img src="../../../../../../assets/images/at-sign.svg" alt="@">
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="mobileNumber">{{'Mobile number' | translate}}</label>
+                     <div class="box-input">
+                        <input class="form-control" type="number" placeholder="" id="mobileNumber" name="mobileNumber">
+                        <img src="../../../../../../assets/images/phone-call.svg" alt="@">
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="country">{{'Country' | translate}}</label>
+                     <div class="box-input">
+                        <input class="form-control" type="text" placeholder="" id="country" name="country">
+                        <img src="../../../../../../assets/images/map.svg" alt="@">
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="country">Employee <span>(optional)</span></label>
+                     <select name="" id="">
+                        <option value="" selected>Margarita Schmidt</option>
+                        <option value="">Margarita Schmidt</option>
+                        <option value="">Margarita Schmidt</option>
+                        <option value="">Margarita Schmidt</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="country">Event</label>
+                     <select name="" id="">
+                        <option value="" selected>Central Paradigm Executive</option>
+                        <option value="">Central Paradigm Executive</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="form-group m-auto">
+                     <button class="btn-send">{{'Send' | translate}}</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

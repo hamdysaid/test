@@ -1,0 +1,158 @@
+<!-- <div class="example-boundary">
+    <div class="example-box " cdkDragBoundary=".example-boundary" cdkDrag>
+      <img src="../../../../../../../../assets/images/stage.svg" alt="stage" class="img-stage">
+    
+    </div>
+    <div class="example-char" cdkDragBoundary=".example-boundary" cdkDrag>
+        <div class="container-padding">
+            <div class="row">
+                 <div class="col mt-3" *ngFor="let current of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                     <img  src="../../../../../../../../assets/images/char-defulat.svg" alt="char" class="img-char">
+                 </div>
+            </div>
+         </div>
+    </div>
+    <div class="example-door" cdkDragBoundary=".example-boundary" cdkDrag>
+        <img src="../../../../../../../../assets/images/door1.svg" alt="door">
+    </div>
+    <div class="example-door" cdkDragBoundary=".example-boundary" cdkDrag>
+        <img src="../../../../../../../../assets/images/door2.svg" alt="door">
+    </div>
+  </div>
+   -->
+<!-- <button data-bs-toggle="modal" data-bs-target="#addGuestsModal">Modal</button> -->
+<div class="map-container">
+   <div class="map-frame">
+      <div id="map"> </div>
+   </div>
+</div>
+
+<!--Modal Add guests--->
+<ng-template #addGuest let-close="close" class="modal fade ">
+   <div class="modal-add-guests">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="modal-header-flex">
+               <img src="../../../../../../../../assets/images/char.svg" alt="char">
+               <input type="text" value="2" readonly>
+               <span>/</span>
+               <input type="text" value="5" readonly>
+            </div>
+            <button (click)="swithChairType(selectedChair?.chairTypeId===1?2:1)" [style.background]="selectedChair?.chairTypeId===1?'#B79308':'#ccc'">
+               <i class="fal fa-crown"></i>
+            </button>
+         </div>
+         <div class="modal-body pt-0">
+            <div [formGroup]="addGuestForm">
+               <div class="row">
+                  <div class="col-md-12 mb-3">
+                     <div class='file file--upload'>
+                        <label for='input-file-Guest'>
+                           <img [src]="img" alt="uploadImage">
+                           <div>
+                              {{'Upload a photo' | translate}}
+                              <span>PNG or JPG</span>
+                           </div>
+                        </label>
+                        <input (change)="onFileChange($event)" formControlName="imageinput" id='input-file-Guest' type='file' />
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="nameGuest">{{'Name guest' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="fullName" class="form-control" type="text" placeholder="Hazza bin Mahmoud" id="nameGuest" name="nameGuest">
+                           <span><i class="fal fa-user"></i></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="email">{{'E-mail' | translate}}</label>
+                        <div class="box-input">
+                           <input autocomplete="off" formControlName="email" class="form-control" type="email" placeholder="info@imshsh.com" id="email" name="email">
+                           <img src="../../../../../../../../assets/images/at-sign.svg" alt="@">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="mobileNumber">{{'Mobile number' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="phoneNumber" class="form-control" type="text" placeholder="" id="mobileNumber" name="mobileNumber">
+                           <img src="../../../../../../../../assets/images/phone-call.svg" alt="@">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="country">{{'Country' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="country" class="form-control" type="text" placeholder="" id="country" name="country">
+                           <img src="../../../../../../../../assets/images/map.svg" alt="@">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div *ngIf="employees$ | async as employees else loading" class="form-group">
+                        <label for="employeeid"> {{'Employee' | translate}}<span>({{'optional' | translate}})</span></label>
+                        <select formControlName="employeeId" name="employeeid" id="employeeid">
+                           <option *ngFor="let employee of employees" [value]="employee.id">{{employee.fullName}}</option>
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <button (click)="SubmitAddGuestFrm()" type="button" class="btn-send">{{'Send' | translate}}</button>
+                           </div>
+                           <div class="col-md-3 col-6">
+                              <button type="button" (click)="close()" class="btn-send btn-ex">{{'Exit' | translate}}</button>
+                           </div>
+                           <div class="col-md-3 col-6">
+                              <button type="button" class="btn-send btn-dan" (click)="openModal(deleteChair)">{{'Delete' | translate}}</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #loading></ng-template>
+
+<!-- <button class="btn btn-primary" (click)="openModal(addChair)">Open Modal</button> -->
+<ng-template #addChair let-modal let-close="close">
+   <div class="modal-choose">
+      <div class="modal-body">
+         <a aria-label="Close" (click)="close()"><i class="fal fa-times-circle icon-style"></i></a>
+         <div class="form-group">
+            <label for="" class="label-head">{{'Are you sure to add the chair?' | translate}}</label>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button (click)="CreateMarker()" type="button" class="btn btn-primary">{{'Yes' | translate}}</button>
+         <button type="button" class="btn btn-danger" (click)="close()">{{'No' | translate}}</button>
+      </div>
+   </div>
+</ng-template>
+
+<ng-template #deleteChair let-close="close" let-modal>
+   <div class="modal-choose">
+      <div class="modal-body">
+         <a aria-label="Close" (click)="close()"><i class="fal fa-times-circle icon-style"></i></a>
+         <div class="form-group">
+            <label for="" class="label-head">{{'Are you sure to delete the chair?' | translate}}</label>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-primary" (click)="deleteChairMethod()">{{'Yes' | translate}}</button>
+         <button type="button" class="btn btn-danger" (click)="close()">{{'No' | translate}}</button>
+      </div>
+   </div>
+</ng-template>

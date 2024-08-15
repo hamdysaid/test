@@ -1,0 +1,60 @@
+<div class="map-container">
+   <div class="map-frame">
+      <div id="map"> </div>
+   </div>
+</div>
+<ng-template #guestStatusModal let-close="close">
+   <div class="modal-add-guests">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="modal-header-flex">
+               <img src="/assets/images/char.svg" alt="char" (click)="close()">
+               {{currentGuestChair.chairNumber}}
+            </div>
+         </div>
+         <div class="modal-body pt-0 toast-message">
+            <div class="d-flex justify-content-start align-items-center">
+               <img [src]="imagePath.normal+currentGuestChair.guestUser?.image" alt="currentGuestChair.guestUser" style="width: 100px; height: 100px;object-fit: cover; border-radius: 10px; border: 1px solid var(--color-2);">
+               <div class="ps-3">
+                  <h3>{{currentGuestChair.guestUser?.fullName}}</h3>
+                  <div class="d-flex" style="font-size: 12px;">
+                     <small class="pe-2">{{currentGuestChair.guestUser?.email}}</small>
+                     <small>{{currentGuestChair.guestUser?.phoneNumber}}</small>
+                  </div>
+               </div>
+            </div>
+            <hr class="border border-bottom " style="border-color: #989898;" />
+            <ng-container *ngIf="currentGuestChair.employeeUser">
+               <strong>Employee:</strong>
+               <div class="d-flex justify-content-start align-items-center">
+                  <img *ngIf="!currentGuestChair.employeeUser.image" src="/assets/images/em.png" alt="currentGuestChair.guestUser" style="width: 60px; height: 60px;object-fit: cover; border-radius: 10px;">
+                  <img *ngIf="currentGuestChair.employeeUser.image" [src]="imagePath.normal+currentGuestChair.employeeUser.image" alt="currentGuestChair.guestUser" style="width: 60px; height: 60px;object-fit: cover; border-radius: 10px;">
+                  <div class="ps-3">
+                     <h3>{{currentGuestChair.employeeUser.fullName}}</h3>
+                     <div class="d-flex" style="font-size: 12px;">
+                        <small class="pe-2">{{currentGuestChair.employeeUser.email}}</small>
+                        <small>{{currentGuestChair.employeeUser.phoneNumber}}</small>
+                     </div>
+                  </div>
+               </div>
+            </ng-container>
+            <!-- <hr class="border border-bottom " style="border-color: #989898;" />
+            <strong>Status:</strong>
+            <ul class="list-group">
+               <li class="list-group-item border-0 border-bottom">
+                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
+                  <label class="form-check-label" for="firstRadio">First radio</label>
+               </li>
+               <li class="list-group-item border-0 border-bottom">
+                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
+                  <label class="form-check-label" for="secondRadio">Second radio</label>
+               </li>
+               <li class="list-group-item border-0 border-bottom">
+                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
+                  <label class="form-check-label" for="thirdRadio">Third radio</label>
+               </li>
+            </ul> -->
+         </div>
+      </div>
+   </div>
+</ng-template>

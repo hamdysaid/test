@@ -1,0 +1,31 @@
+.btns-colors{
+    display: flex;
+    align-items: center;
+}
+.btns-colors label{
+  margin-right: 15px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+.btns-colors .colorBtn1{background: #B4E5BC;}
+.btns-colors .colorBtn2{background: #F4CE9B;}
+.btns-colors .colorBtn3{background: #CCC1F0;}
+.btns-colors .colorBtn4{background: #F3ABA7;}
+.btns-colors .colorBtn5{background: #B8DFF2;}
+
+.add-eventNew h2{
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    letter-spacing: -0.333333px;
+    color: #000000;
+    padding-bottom: 0px;
+}
+.add-eventNew input[type=radio]{
+    margin-right: 2px;
+    cursor: pointer;
+}

@@ -1,0 +1,23 @@
+<div >
+    <div class="scrollbar-Volunteer" id="style-Volunteer">  
+          <div class="boxs-Volunteer">
+             <h3>  {{'Agenda' | translate}}<span>({{Agenda.length}})</span></h3>
+             <div *ngFor="let current of Agenda" class="boxs-Agenda-height">
+                <h4>{{current.name}}</h4>
+                <p>{{current.description}}</p>
+                <div class="boxs-Agenda-height-flex d-flex align-items-center justify-content-between">
+                   <div>
+                      <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="calendaradd" class="icon-svg">
+                      <span class="ps-0">{{current.dateTimeStart | date}} _ {{current.dateTimeEnd | date}}</span>
+                      <img src="../../../../../../../../assets/images/clock.svg" alt="clock" class="icon-svg">
+                      <span class="ps-0">{{current.startHour}} - {{current.endHour}}</span>
+                   </div>
+                   <div>
+                      <img [src]="imagePath.normal + current.leader?.image" alt="user" >
+                      <img *ngFor="let employee of current.employees" [src]="imagePath.normal+employee.image" alt="user">
+                   </div>
+                </div>
+             </div>
+          </div>
+    </div>
+       </div>

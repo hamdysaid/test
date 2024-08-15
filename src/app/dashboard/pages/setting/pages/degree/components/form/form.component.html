@@ -1,0 +1,21 @@
+<div [formGroup]="form" class="form-setting">
+    <div class="row border-bottom pb-2">
+        <div class="col-md-5">
+            <div class="form-group mt-1">
+                <label for="degree">{{'Degree' | translate}}</label>
+                <input formControlName="name" type="text" id="degree" name="degree" class="form-control input-setting">
+                <em *ngIf="validation.validateControl('name')">Please Enter degree</em>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group mt-1">
+                <label for="degree">{{'DegreeAR' | translate}}</label>
+                <input formControlName="nameAR" type="text" id="degree" name="degree" class="form-control input-setting">
+                <em *ngIf="validation.validateControl('nameAR')">Please Enter degreeAR</em>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button (click)="submit()" type="button" class="btn-send btn-access">{{'Save Access' | translate}}</button>
+        </div>
+    </div>
+</div>

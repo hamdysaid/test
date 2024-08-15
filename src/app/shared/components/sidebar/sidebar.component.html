@@ -1,0 +1,160 @@
+<!-- Sidebar -->
+<div class="s-layout__sidebar">
+   <a class="s-sidebar__trigger" onclick="openSidebar()" id="sidebar__trigger">
+      <i class="fa fa-bars"></i>
+   </a>
+   <nav class="s-sidebar__nav" id="sidebar-nav">
+      <button id="btnClose" onclick="closeSidebar()">
+         <i class="fal fa-times"></i>
+      </button>
+      <ul>
+         <li>
+            <div class="search-nav">
+               <!-- <input type="text" class="form-control">
+               <div class="border-bottom"></div> -->
+               <img src="/assets/logo.png" height="90" alt="search">
+            </div>
+         </li>
+         <li>
+            <a [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'" [routerLink]="'index'"
+               routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <span>{{'Dashboard' | translate}}</span>
+                  <img src="/assets/images/home2.svg" alt="Dashboard" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/home2.svg" alt="Dashboard" class="ReportsImage">
+                  <span>{{'Dashboard' | translate}}</span>
+               </div>
+            </a>
+         </li>
+         <li>
+            <a *ngIf="userService.isUserAdmin()"
+               [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'" [routerLink]="'volunteer'"
+               routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <span>{{'Volunteer' | translate}}</span>
+                  <img src="/assets/images/Volunteer.svg" alt="Volunteer" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/Volunteer.svg" alt="Volunteer" class="ReportsImage">
+                  <span>{{'Volunteer' | translate}}</span>
+               </div>
+            </a>
+         </li>
+         <li *ngIf="userService.hasUserPolicy('CreateAgenda')||userService.hasUserPolicy('UpdateAgenda')">
+            <a [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'" [routerLink]="'agenda'"
+               routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <span> {{'Agenda' | translate}}</span>
+                  <img src="/assets/images/Agenda.svg" alt="Agenda" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/Agenda.svg" alt="Agenda" class="ReportsImage">
+                  <span> {{'Agenda' | translate}}</span>
+               </div>
+            </a>
+         </li>
+         <li *ngIf="userService.hasUserPolicy('CreateEvent')||userService.hasUserPolicy('UpdateEvent')">
+            <a [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'" [routerLink]="'event'"
+               routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <span> {{'Event' | translate}}</span>
+                  <img src="/assets/images/Event.svg" alt="Event" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/Event.svg" alt="Event" class="ReportsImage">
+                  <span> {{'Event' | translate}}</span>
+               </div>
+            </a>
+         </li>
+         <li *ngIf="userService.isUserAdmin()">
+            <a [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'" [routerLink]="'employees'"
+               routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <span> {{'Employees' | translate}}</span>
+                  <img src="/assets/images/Employees.svg" alt="Employees" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/Employees.svg" alt="Employees" class="ReportsImage">
+                  <span> {{'Employees' | translate}}</span>
+               </div>
+            </a>
+         </li>
+         <li *ngIf="userService.hasUserPolicy('AddGuest')">
+            <a [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'" [routerLink]="'guests'"
+               routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <span> {{'Guests' | translate}}</span>
+                  <img src="/assets/images/Guests.svg" alt="Guests" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/Guests.svg" alt="Guests" class="ReportsImage">
+                  <span> {{'Guests' | translate}}</span>
+               </div>
+
+            </a>
+         </li>
+         <li
+            *ngIf="userService.hasUserPolicy('ReportVolunteer')||userService.hasUserPolicy('ReportAgenda')||userService.hasUserPolicy('ReportEvent')||userService.hasUserPolicy('ReportEmployee')||userService.hasUserPolicy('ReportGuest')">
+            <a (click)="DropDown()"
+               [ngClass]="language=='en'?'dropdown-btn s-sidebar__nav-link':'dropdown-btn s-sidebar__nav-link linkrtl'"
+               [routerLink]="'reports'" routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <img #dropdownArrow src="/assets/images/arrow-drop.svg" alt="arrow" class="arrow" id="arrowDrop">
+                  <span> {{'Reports' | translate}}</span>
+                  <img src="/assets/images/Reports.svg" alt="Reports" class="ReportsImage imageRtl">
+               </div>
+
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/Reports.svg" alt="Reports" class="ReportsImage">
+                  <span> {{'Reports' | translate}}</span>
+                  <img #dropdownArrow src="/assets/images/arrow-drop.svg" alt="arrow" class="arrow" id="arrowDrop">
+               </div>
+            </a>
+            <div #dropdown_container class="dropdown-container"
+               [ngClass]="language=='en'?'dropdown-container':'dropdown-container dropdown-rtl'">
+               <a *ngIf="userService.hasUserPolicy('ReportVolunteer')" [routerLink]="'reports/volunteer'"
+                  routerLinkActive="active"> {{'Volunteer' | translate}}</a>
+               <a *ngIf="userService.hasUserPolicy('ReportAgenda')" [routerLink]="'reports/agenda'"
+                  routerLinkActive="active"> {{'Agenda' | translate}}</a>
+               <a *ngIf="userService.hasUserPolicy('ReportEvent')" [routerLink]="'reports/event'"
+                  routerLinkActive="active"> {{'Event' | translate}}</a>
+               <a *ngIf="userService.hasUserPolicy('ReportEmployee')" [routerLink]="'reports/employees'"
+                  routerLinkActive="active"> {{'Employees' | translate}}</a>
+               <a *ngIf="userService.hasUserPolicy('ReportGuest')" [routerLink]="'reports/guests'"
+                  routerLinkActive="active"> {{'Guests' | translate}}</a>
+            </div>
+         </li>
+         <li class="li-dash li-setting">
+            <a [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'" [routerLink]="'setting'"
+               routerLinkActive="active">
+               <div *ngIf="language === 'ar'">
+                  <span> {{'Settings' | translate}}</span>
+                  <img src="/assets/images/setting.svg" alt="setting" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/setting.svg" alt="setting" class="ReportsImage">
+                  <span> {{'Settings' | translate}}</span>
+               </div>
+
+            </a>
+         </li>
+         <li class="li-dash">
+            <a style="cursor: pointer;" (click)="logOut()"
+               [ngClass]="language=='en'?'s-sidebar__nav-link':'s-sidebar__nav-link linkrtl'">
+               <div *ngIf="language === 'ar'">
+                  <span> {{'Log out' | translate}}</span>
+                  <img src="/assets/images/logout.svg" alt="logout" class="ReportsImage imageRtl">
+               </div>
+               <div *ngIf="language === 'en'">
+                  <img src="/assets/images/logout.svg" alt="logout" class="ReportsImage">
+                  <span> {{'Log out' | translate}}</span>
+               </div>
+            </a>
+         </li>
+      </ul>
+
+   </nav>
+
+</div>

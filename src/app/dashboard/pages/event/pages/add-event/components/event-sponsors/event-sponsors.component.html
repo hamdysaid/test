@@ -1,0 +1,13 @@
+<div  [ngClass]="language=='en'?'add-eventNew':'add-eventNew pagedirection'">
+<h2 class="mb-5">Sponsors :</h2>
+<div class="row pb-3">
+    <div 
+    *ngFor="let current of _eventSponsorsService.entitisFrCurrentEvent"
+    class="col-md-2">
+        <div class="box-sponsors">
+            <i class="fal fa-times"></i>
+            <img [src]="imagePath.normal + current.image" alt="sponsor" class="img-sponsor">    
+        </div>
+    </div>
+</div>
+</div>

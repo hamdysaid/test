@@ -1,0 +1,44 @@
+<div id="Degree">
+    <app-form></app-form>
+    <div class="row mt-4">
+        <div class="col-md-4" *ngFor="let current of this._degreeService.entities">
+            <app-cards [degree]="current"></app-cards>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalDegree" tabindex="-1" aria-labelledby="modalStateLabel" aria-hidden="true">
+    <div  [ngClass]="language=='en'?'modal-dialog':'modal-dialog pagedirection'">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Edit Degree' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="_popup.getForm()" [formGroup]="_popup.getForm()" class="form-setting">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Degree' | translate}}</label>
+                                <input formControlName="name" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'DegreeAR' | translate}}</label>
+                                <input formControlName="nameAR" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-bs-dismiss="modal" (click)="submit()" type="button" class="btn-send btn-access">{{'Update' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

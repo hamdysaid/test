@@ -1,0 +1,21 @@
+.filterdirection{
+    direction: rtl !important;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust this as needed */
+    gap: 10px; /* Add space between buttons */
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}

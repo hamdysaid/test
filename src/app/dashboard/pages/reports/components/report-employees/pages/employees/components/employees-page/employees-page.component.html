@@ -1,0 +1,18 @@
+ 
+  
+
+  <div class="section-volunteer-tabs">
+    <div class="tab-order">
+       <a [routerLink]="'../employees'" routerLinkActive="active"  class="b-nav-tab">
+         {{'Employees' | translate}}
+        </a>
+       <!-- <a [routerLink]="'../activity'" routerLinkActive="active" class="b-nav-tab">
+         {{'Activity' | translate}} 
+        </a>-->
+    </div>
+    <app-employees-search></app-employees-search> 
+ </div>
+ <div class="section-vlounteer-content">
+    <app-employees-filter></app-employees-filter>
+   <app-employees-table></app-employees-table>
+</div>

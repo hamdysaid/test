@@ -1,0 +1,21 @@
+<section class="section-volunteer">
+    <div class="container-padding">
+       <div class="section-volunteer-header">
+          <h1>{{'Settings' | translate}}</h1>
+          <p>
+             <a href="/"><img src="../../../../../../assets/images/home2.svg" alt="home2">{{'Dashboard' | translate}}</a>
+             <span><i class="fal fa-chevron-right"></i></span>
+             <a  class="a-active">{{'Settings' | translate}}</a>
+          </p>
+       </div>
+       <div class="row mt-4 dir-row">
+         <app-sidebar-setting class="col-md-3"></app-sidebar-setting>
+         <div class="col-md-9">
+            <div class="tab-content">
+               <router-outlet></router-outlet>
+            </div>
+         </div>
+         
+       </div>
+    </div>
+</section>

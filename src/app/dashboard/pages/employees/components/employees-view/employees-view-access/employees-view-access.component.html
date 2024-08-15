@@ -1,0 +1,17 @@
+<div *ngIf="vacations.length != 0 else loading">
+    <div class="section-employees-card2" *ngFor="let current of vacations">
+        <h3>{{current.vacationType.name}}</h3>
+        <p>{{current.note}}</p>
+        <div class="calendaradd">
+           <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="calendaradd">
+           <span>{{current.startDate | date}} _ {{current.endDate | date}}</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-end div-buttons mt-1">
+              <button (click)="AcceptorReject(current.id, false)" type="button" class="btn-hide">{{'Rejected' | translate}}</button>      
+              <button (click)="AcceptorReject(current.id, true)" type="button" class="btn-send">{{'Approved' | translate}}</button>                                                   
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    <h1>no vacations</h1>
+</ng-template>

@@ -1,0 +1,89 @@
+<div  [ngClass]="language=='en'?'add-eventNew':'add-eventNew pagedirection'">
+   <div *ngFor="let current of _eventSpeakersService.entities" class="box-speakers">
+      <div class="d-flex align-items-center box-speakers-flex">
+         <img [src]="imagePath + current.image" alt="user" class="img-user">
+         <div class="box-speakers-text">
+            <h6>{{current.fullName}}</h6>
+            <p>{{current.specialization}}</p>
+         </div>
+      </div>
+      <div class="tools">
+         <img (click)="deleteItem(current.id)" src="../../../../../../../../assets/images/trash-event.svg" alt="trash-event" class="me-2">
+         <img (click)="clickToUpdateSpeaker(current.id)" src="../../../../../../../../assets/images/edit.svg" alt="edit-event">
+      </div>
+   </div>
+</div>
+
+<!--Modal Update Speaker--->
+<ng-template #updateSpeakerModal let-close="close" class="modal fade">
+   <div [ngClass]="language=='en'?'modal-add-guests':'modal-add-guests pagedirection'">
+      <div class="modal-content">
+         <div class="modal-body pt-0">
+            <div *ngIf="getByIdEvent$ | async as response else load" [formGroup]="updateSpeakerFrom">
+               <div class="row pt-4">
+                  <div class="col-md-12 mb-3">
+                     <div class='file file--upload'>
+                        <label for='input-file-Guest'>
+                           <img [src]="validationUrl(response)" alt="uploadImage">
+
+                           <div>
+                              <p>Upload a Speaker Image</p>
+                              <span>PNG or JPG</span>
+                           </div>
+                        </label>
+                        <input (change)="onFileChange($event)" formControlName="imageinput" id='input-file-Guest' type='file' />
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label >{{'Full name' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="fullName" class="form-control" type="text" id="nameGuest" name="nameGuest">
+                           <!--<span><i class="fal fa-user"></i></span>-->
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="nameGuest">{{'Full name AR' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="fullNameAR" class="form-control" type="text" id="nameGuest" name="nameGuest">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="mobileNumber">{{'specialization' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="specialization" class="form-control" type="text" id="mobileNumber" name="mobileNumber">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="country">{{'specializationAR' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="specializationAR" class="form-control" type="text" id="country" name="country">
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-md-12">
+                     <div class="form-group m-auto d-flex">
+                        <button (click)="submitUpdateSpeaker()" type="button" class="btn-send">{{'Send' | translate}}</button>
+                        <button type="button" class="btn-send btn-danger-st" (click)="close()">{{'Exit' | translate}}</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</ng-template>
+<ng-template #load>
+   <div class="row justify-content-between my-5">
+      <div class="col-md-6 my-5">
+         <h1 class="splash" data-text="Loading...">Loading...</h1>
+      </div>
+   </div>
+</ng-template>

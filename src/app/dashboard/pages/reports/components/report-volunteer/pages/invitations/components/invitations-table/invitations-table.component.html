@@ -1,0 +1,54 @@
+<section class="home-table">
+    <div class="container-padding">
+       <div class="home-table-data border-rad">
+          <div class="home-table-list">
+             <table class="table table-borderd table-hover">
+             <thead>
+                   <tr>
+                      <th> {{'ID' | translate}}</th>
+                      <th>{{'Full name' | translate}}</th>
+                      <th>{{'E-mail' | translate}}</th>
+                      <th>{{'Mobile number' | translate}}</th>
+                      <!-- <th>Volunteer hours </th> -->
+                      <th>{{'Invitations' | translate}}</th>
+                      <th>{{'Approved' | translate}}</th>
+                      <th>{{'Rejected' | translate}}</th>
+                      <th>{{'Proof' | translate}}</th>
+                      <th>{{'Certificates' | translate}}</th>
+                   </tr>
+             </thead>
+             <tbody>
+               <tr
+               *ngFor="let current of _reportService.invitationData.data
+               | paginate
+               : {
+                   id: 'server',
+                   itemsPerPage: _reportService.invitationData.pagination.pageSize ,
+                   currentPage: _reportService.invitationData.pagination.currentPage,
+                   totalItems: _reportService.invitationData.pagination.rowCount
+                 }
+                 ;let i = index;">
+                  <td>{{ _reportService.invitationData.pagination.pageSize * (_reportService.invitationData.pagination.currentPage - 1) + i + 1}}</td>
+                  <td>{{current.fullName}}</td>
+                  <td>{{current.email}}</td>
+                  <td>{{current.phoneNumber}}</td>
+                  <!-- <td>{{current.classDateTimes?.at(0)?.start}} _ {{current.classDateTimes?.at(0)?.end}}</td> -->
+                  <td>{{current.invitations}}</td>
+                  <td>{{current.approved}}</td>
+                  <td>{{current.rejected}}</td>
+                  <td>{{current.proof}}</td>
+                  <td>{{current.certificates}}</td>
+             </tr>
+              
+             </tbody>
+             </table>
+               <pagination-controls
+               previousLabel="{{'Previous' | translate}}"
+               nextLabel="{{'Next' | translate}}"
+               (pageChange)="_reportService.getPageInvitation($event)"
+               id="server"
+            ></pagination-controls>
+          </div>
+       </div>
+    </div>
+ </section>

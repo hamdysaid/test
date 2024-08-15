@@ -1,0 +1,12 @@
+<div class="view-style">
+<h4 class="border-bottom h-head">{{'Sponsors' | translate}}</h4>
+<div *ngIf="eventSponsor$ | async as respnseSponsor else loading" class="row align-items-center">
+    <div *ngFor="let current of respnseSponsor.response" class="col-md-3">
+        <div class="img-sponsor">
+             <img [src]="imgPath + current.image" alt="Sponsors">
+        </div>
+    </div>
+</div>
+</div>
+
+<ng-template #loading></ng-template>

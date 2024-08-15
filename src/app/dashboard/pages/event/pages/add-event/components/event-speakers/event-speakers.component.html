@@ -1,0 +1,15 @@
+<div [ngClass]="language=='en'?'add-eventNew':'add-eventNew pagedirection'">
+    <div *ngFor="let current of _eventSpeakersService.entitisFrCurrentEvent" class="box-speakers">
+        <div class="d-flex align-items-center box-speakers-flex">
+            <img [src]="imagePath.normal + current.image" alt="user" class="img-user">
+            <div class="box-speakers-text">
+                <h6>{{current.fullName}}</h6>
+                <p>{{current.specialization}}</p>
+            </div>
+        </div>
+        <div class="tools">
+            <img src="../../../../../../../../assets/images/trash-event.svg" alt="trash-event" class="me-2">
+            <img src="../../../../../../../../assets/images/edit.svg" alt="edit-event">
+        </div>
+    </div>
+</div>

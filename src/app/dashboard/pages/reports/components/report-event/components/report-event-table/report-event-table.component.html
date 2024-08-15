@@ -1,0 +1,55 @@
+<section class="home-table">
+    <div class="container-padding">
+       <div class="home-table-data border-rad">
+          <div class="home-table-list">
+             <table class="table table-borderd table-hover">
+             <thead>
+                   <tr>
+                      <th> {{'ID' | translate}}</th>
+                      <th>{{'Event title' | translate}}</th>
+                      <th>{{'Date' | translate}}</th>
+                      <th>{{'Times' | translate}}</th>
+                      <th>{{'Number guest' | translate}}</th>
+                      <th>{{'Attended' | translate}}</th> 
+                      <th>{{'Absent' | translate}}</th>                           
+                      <th>{{'On way' | translate}}</th>                           
+                      <th>{{'Apologize' | translate}}</th>                           
+                      <th>{{'Late' | translate}}</th>                           
+                      <th>{{'StatusLabel' | translate}}</th>                                                   
+                   </tr>
+             </thead>
+             <tbody>
+               <tr
+               *ngFor="let current of _reportService.eventData.data
+               | paginate
+               : {
+                   id: 'server',
+                   itemsPerPage: _reportService.eventData.pagination.pageSize ,
+                   currentPage: _reportService.eventData.pagination.currentPage,
+                   totalItems: _reportService.eventData.pagination.rowCount
+                 }
+                 ;let i = index;">
+                   <td>{{ _reportService.eventData.pagination.pageSize * (_reportService.eventData.pagination.currentPage - 1) + i + 1}}</td>
+                   <td >{{current.name}}</td>
+                   <td>{{current.startDate | date}} _ {{current.endDate | date}}</td>
+                   <td>{{current.startHour}} _ {{current.endHour}}</td>
+                   <td>{{current.numberOfGuest}}</td>
+                   <td>{{current.attended}}</td>
+                   <td>{{current.absent}}</td>
+                   <td>{{current.onWay}}</td>
+                   <td>{{current.apologize}}</td>
+                   <td>{{current.late}}</td>
+                   <td class="td-status"><div class="circle" [style]="{background: '#'+current.color}"></div> {{language=='en'? current.status : current.statusAr}}</td>
+              </tr>
+         </tbody>
+             </table>
+             <pagination-controls
+             previousLabel="{{'Previous' | translate}}"
+             nextLabel="{{'Next' | translate}}"
+             (pageChange)="_reportService.getPageEvent($event)"
+             id="server"
+           ></pagination-controls>
+          </div>
+       </div>
+    </div>
+ </section>

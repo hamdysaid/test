@@ -1,0 +1,24 @@
+
+    <div *ngIf="event$ | async as eventResponse else loading" class="view-style">
+        <img [src]="validationUrl(eventResponse)" alt="event View" class="img-head">
+        <h1>{{eventResponse.response.name}}</h1>
+        <p class="border-bottom pb-2">{{eventResponse.response.description}}</p>
+        <div class="d-flex align-items-center flex-view1">
+            <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="calendaradd">
+            <span>{{eventResponse.response.startDate | date}} - {{ eventResponse.response.endDate | date}}</span>
+            <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+            <span>{{ eventResponse.response.locationHint}}</span>
+            <img src="../../../../../../../../assets/images/char.svg" alt="char">
+            <span>2/4</span>
+        </div>
+        <div class="d-flex align-items-center flex-view1">
+            <img src="../../../../../../../../assets/images/clock.svg" alt="calendaradd">
+            <span class="span-light">{{'From' | translate}}</span>
+            <span >{{eventResponse.response.startHour}}</span>
+            <span class="span-light">{{'To' | translate}}</span>
+            <span>{{eventResponse.response.endHour}}</span>
+        </div>
+    </div>
+
+    <ng-template #loading></ng-template>
+    

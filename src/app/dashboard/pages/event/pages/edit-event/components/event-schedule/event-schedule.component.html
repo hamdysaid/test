@@ -1,0 +1,74 @@
+<div  [ngClass]="language=='en'?'add-eventNew':'add-eventNew pagedirection'">
+   <div class="boxs-events">
+      <div *ngFor="let current of _eventScheduleService.entities" class="box-event-new">
+         <div class="d-flex align-items-center justify-content-between box-event-flex">
+            <div class="align-element">
+               <img src="../../../../../../../../assets/images/clock.svg" alt="clock">
+               <span>{{'From' | translate}}</span>
+               <span><b>{{current.startHour}}</b></span>
+               <span>{{'To' | translate}}</span>
+               <span><b>{{current.endHour}}</b></span>
+            </div>
+            <div class="tools">
+               <img (click)="deleteItem(current.id)" src="../../../../../../../../assets/images/trash-event.svg" alt="trash-event" class="me-2">
+               <img (click)="clickToUpdateSchedule(current.id)" src="../../../../../../../../assets/images/edit.svg" alt="edit-event">
+            </div>
+         </div>
+         <p>{{current.description}}</p>
+      </div>
+   </div>
+</div>
+<ng-template #updateScheduleModal let-close="close" class="modal fade">
+   <div  [ngClass]="language=='en'?'modal-add-guests':'modal-add-guests pagedirection'">
+      <div class="modal-content">
+         <div class="modal-body pt-0">
+            <div *ngIf="getByIdEvent$ | async as response else load" [formGroup]="updateScheduleFrom">
+               <div class="row pt-4">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="nameGuest">{{'From' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="startHour" type="time" class="form-control">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="nameGuest">{{'To' | translate}}</label>
+                        <div class="box-input">
+                           <input formControlName="endHour" type="time" class="form-control">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="nameGuest">{{'Description' | translate}}</label>
+                        <textarea formControlName="description"></textarea>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="email">{{'DescriptionAR' | translate}}</label>
+                        <textarea formControlName="descriptionAR"></textarea>
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="form-group m-auto d-flex">
+                        <button (click)="submit()" type="button" class="btn-send">Save</button>
+                        <button type="button" class="btn-send btn-danger-st" (click)="close()">{{'Exit' | translate}}</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+</ng-template>
+<ng-template #load>
+   <div class="row justify-content-between my-5">
+      <div class="col-md-6 my-5">
+         <h1 class="splash" data-text="Loading...">Loading...</h1>
+      </div>
+   </div>
+</ng-template>

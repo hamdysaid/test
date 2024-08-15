@@ -1,0 +1,74 @@
+.modal-otp{
+    text-align: center;
+  }
+  .modal-otp h4{
+    font-family: 'Dubai Bold';
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: -0.333333px;
+    color: #000000;
+    margin-top: 10px;
+    padding-bottom: 15px;
+  }
+  .modal-otp p{
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: -0.333333px;
+    color: #7D7D7D;
+  }
+  .btn-closed{
+    top: 20px;
+    left: 20px;
+    position: absolute;
+    font-size: 15px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #000 ;
+    opacity: 1 !important;
+  }
+  #otp input{
+    background: rgba(217, 217, 217, 0.35);
+    border: 1px solid #A3A3A3;
+    border-radius: 10px;
+    width: 72.96px;
+    height: 67px;
+    font-family: 'Dubai';
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 51px;
+    text-align: center;
+    letter-spacing: -0.333333px;
+    color: #000000;
+  }
+  .form-otp button{
+    width: 75%;
+  }
+  .modal-otp .p-bottom{
+    font-size: 14px;
+    font-family: 'Dubai';
+  }
+  .login-button{
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background: linear-gradient(267.33deg, #B68934 33.83%, #B79308 122.94%);
+    box-shadow: 0px 12.1167px 24.2334px rgba(1, 11, 253, 0.12);
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    height: 50.49px;
+    font-family: 'Dubai';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 34px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}

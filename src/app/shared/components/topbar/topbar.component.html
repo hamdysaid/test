@@ -1,0 +1,67 @@
+  <!-- Content -->
+
+  <section class="header-nav ">
+    <div class="row align-items-center">
+       <div class="col-md-6">
+          <div class="header-nav-text">
+             <p>{{'Hi' | translate}} {{userResponse.fullName}},</p>
+             <h4> {{'Welcome to VEC !' | translate}}</h4>
+          </div>
+       </div>
+       <div class="col-md-6">
+          <!-- <select (change)="changeLang()" class="custom-select" [(ngModel)]="language">
+            <option [selected]="language == 'en'" value="en">English</option>
+            <option [selected]="language == 'ar'" value="ar">Arabic</option>
+          </select> -->
+    <div class="header-nav-section-two">
+      <div class="language-selector__container">
+         <label>
+          <select (change)="changeLang()" [(ngModel)]="language" class="js_language_selector">
+            <option [selected]="language == 'ar'" value="ar">عربي</option>
+            <option [selected]="language == 'en'" value="en">English</option>
+          </select>
+        </label>
+      </div>
+       <div class = "notification">
+          <div class = "notBtn" href = "#">
+            <!--Number supports double digets and automaticly hides itself when there is nothing between divs -->
+            <div class = "number">{{_notificationService.counter}}</div>
+            <i class="fal fa-bell"></i>
+              <div class = "box">
+                <div class = "display">
+                  <div class = "nothing"> 
+                    <i class="fas fa-child stick"></i> 
+                    <div class = "cent">Looks Like your all caught up!</div>
+                  </div>
+                  <div class = "cont"><!-- Fold this div and try deleting evrything inbetween -->
+                     <div class = "sec new"
+                     *ngFor="let current of _notificationService.data.data"
+                     >
+                       <a routerLink="/dashboard/home/index" (click)="readNotification(current.id)" class="message-style">
+                         <div class = "profCont">
+                           <img class = "profile" [src]="imagePath + current.image">
+                        </div> 
+                         <div class = "txt">{{current.title}}</div>
+                         <div class = "txt-sub">{{current.description}}</div>
+                       </a>
+                    </div>
+                 </div>
+                </div>
+             </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center style-user">
+          <div class="text-user">
+             <h5>{{userResponse.fullName}},</h5>
+             <p>{{role}}</p>
+          </div>
+          <div style="background: url({{imagePath+userResponse.image}});background-position: center; background-size: cover;" src="" alt="user" class="img-user"></div>
+            <div [style]="{background: '#'+userResponse.status.color}" class="point-color">
+          </div>
+        </div>
+    </div>
+
+       </div>
+    </div>
+ </section>
+

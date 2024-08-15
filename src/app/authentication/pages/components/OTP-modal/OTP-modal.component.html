@@ -1,0 +1,42 @@
+<div class="modal-content">
+  <div class="modal-body modal-otp">
+    <button type="button" class="close btn-closed" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true"></span>
+    </button>
+    <h4 class="modal-title">Enter OTP</h4>
+    <p>
+      An 6 digits code has been sent to your email:<br>
+      {{emailMask(email)}}
+    </p>
+    <div [formGroup]="formOTP" class="form-otp">
+      <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+        <input id="char1" #char1 (focus)="char1.value&&char1.select();" (input)="char1.value&&char2.focus();"
+          (keyup.backspace)="char1.blur()" type="text" pattern="\d*" formControlName="char1"
+          class="m-2 text-center form-control rounded" maxlength="6" />
+        <input id="char2" #char2 (input)="char2.value&&char3.focus();" (keyup.backspace)="char1.focus()" type="text"
+          pattern="\d*" formControlName="char2" class="m-2 text-center form-control rounded" maxlength="1" />
+        <input id="char3" #char3 (input)="char3.value&&char4.focus();" (keyup.backspace)="char2.focus()" type="text"
+          pattern="\d*" formControlName="char3" class="m-2 text-center form-control rounded" maxlength="1" />
+        <input id="char4" #char4 (input)="char4.value&&char5.focus();" (keyup.backspace)="char3.focus()" type="text"
+          pattern="\d*" formControlName="char4" class="m-2 text-center form-control rounded" maxlength="1" />
+        <input id="char5" #char5 (input)="char5.value&&char6.focus();" (keyup.backspace)="char4.focus()" type="text"
+          pattern="\d*" formControlName="char5" class="m-2 text-center form-control rounded" maxlength="1" />
+        <input id="char6" #char6 (keyup.backspace)="char5.focus()" type="text" pattern="\d*" formControlName="char6"
+          class="m-2 text-center form-control rounded" maxlength="1" />
+      </div>
+      <button type="button" class="login-button" [disabled]="!(char1.value&&char2.value&&char3.value&&char4.value&&char5.value&&char6.value)"(click)="sendOTP()">Send code</button>
+      <div *ngIf="showforgetresendcode">
+        <div *ngIf="isResendActive">
+          <button *ngIf="!isCountdownActive" type="button" class="login-button" (click)="resendResetCode()">Resend
+            Code</button>
+        </div>
+        <p *ngIf="isCountdownActive">resend code in {{ countdown }} seconds.</p>
+      </div>
+    </div>
+    <!-- <p class="p-bottom">
+      Send after 00:20
+    </p> -->
+
+
+  </div>
+</div>

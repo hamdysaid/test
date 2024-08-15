@@ -1,0 +1,77 @@
+
+    <div class="scrollbar" id="style-1">
+       <div class="many-feature-flex1 force-overflow">
+          <div class="flex-dateTime">
+             <h1>{{this._agendaService.dateStart | date}}</h1>
+             <a href="/dashboard/home/agenda"> {{'View all Agenda' | translate}}</a>
+          </div>
+          <div class="flex-boxs" *ngFor="let current of _agendaService.entities" (click)="onClick(current.id)">
+             <h1>{{current.name}}</h1>
+             <p>{{current.description}}</p>
+             <div class="flex-boxs-users mt-2">
+                <h5>{{current.startHour}} - {{current.endHour}}</h5>
+                <!-- Button trigger modal -->
+                <a (click)="onClick(current.id)">
+                   <img *ngFor="let emp of current.employees" [src]="imagePath.normal + emp.image" alt="user">
+                </a>
+             </div>
+          </div>
+       </div>
+    </div>
+ 
+
+<!-- Modal Agenda -->
+<ng-template #modalDetails let-close="close" class="modal-agenda" >
+      <div class="modal-agenda">
+        <div class="modal-dialog-centered">
+          <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title" id="AgendaDetailLabel">{{agenda.name}}</h5>
+                <div class="flex-agenda">
+                   <p><img src="../../../../../../assets/images/calenderAgenda.svg" alt="date"> {{agenda.dateTimeStart | date}} _ {{agenda.dateTimeEnd| date}}</p>
+                   <p><img src="../../../../../../assets/images/clock.svg" alt="time">{{agenda.startHour}} _ {{agenda.endHour}}</p>
+             </div>
+                <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+             </div>
+             <div class="modal-body pt-0">
+                <div class="modal-body-agenda">
+                   <p class="p-header">{{agenda.description}}</p>
+                   <h3>Employees :</h3>
+                   <div class="row">
+                    <div class="col-md-6">
+                      <div class="card-agenda">
+                         <div class="photo-user">
+                               <img width="33vw" [src]="imagePath.normal+agenda.leader?.image" alt="photoAgenda">
+                         </div>
+                         <div class="card-agenda-text">
+                             <h4>{{agenda.leader?.fullName}}</h4>
+                             <div class="flex-card-agenda">
+                               <p><img src="../../../../../../assets/images/at-sign.svg" alt="@"> {{agenda.leader?.email}} </p>
+                               <p><img src="../../../../../../assets/images/phone-call.svg" alt="phone"> {{agenda.leader?.phoneNumber}}</p>
+                             </div>
+                         </div>
+                      </div>
+                   </div>
+                     <div *ngFor="let user of agenda.employees" class="col-md-6">
+                        <div class="card-agenda">
+                           <div class="photo-user">
+                                 <img width="33vw" [src]="imagePath.normal+user.image" alt="photoAgenda">
+                           </div>
+                           <div class="card-agenda-text">
+                               <h4>{{user.fullName}}</h4>
+                               <div class="flex-card-agenda">
+                                 <p><img src="../../../../../../assets/images/at-sign.svg" alt="@"> {{user.email}} </p>
+                                 <p><img src="../../../../../../assets/images/phone-call.svg" alt="phone"> {{user.phoneNumber}}</p>
+                               </div>
+                           </div>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          </div>
+      </div>
+</ng-template>
+
+

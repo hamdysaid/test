@@ -1,0 +1,61 @@
+<div class="section-vlounteer-content section-employees">
+   <section class="home-table">
+      <div class="home-table-data">
+         <div class="home-table-list">
+            <table class="table table-borderd table-hover">
+               <thead>
+                  <tr>
+                     <th> {{'ID' | translate}}</th>
+                     <th>{{'Full name' | translate}}</th>
+                     <th>{{'E-mail' | translate}}</th>
+                     <th>{{'Mobile number' | translate}}</th>
+                     <th>{{'StateLabel' | translate}}</th>
+                     <th>{{'Worktime' | translate}}</th>
+                     <th>{{'Department' | translate}}</th>
+                     <th>{{'Actions' | translate}}</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let current of _employeeService.employeeResponse.data
+                | paginate
+                : {
+                    id: 'server',
+                    itemsPerPage: _employeeService.employeeResponse.pagination.pageSize ,
+                    currentPage: _employeeService.employeeResponse.pagination.currentPage,
+                    totalItems: _employeeService.employeeResponse.pagination.rowCount
+                  }
+                  ;let i = index;" [style.opacity]="current.deletedAt?'.5':'unset'" [class.text-bg-secondary]="!current.isActive">
+                     <td> {{ _employeeService.employeeResponse.pagination.pageSize * (_employeeService.employeeResponse.pagination.currentPage - 1) + i + 1}}</td>
+
+                     <td class="td-user">
+                        <!-- <img [src]="imagePath.normal+current.image" alt="">  -->
+                        {{current.fullName}}.
+                     </td>
+                     <td>{{current.email}}</td>
+                     <td>{{current.phoneNumber}}</td>
+                     <td>{{language=='en'? current.principality.name : current.principality.nameAR}}</td>
+                     <td>{{current.startWorkTime}} - {{current.endWorkTime}}</td>
+                     <td class="td-status">
+                        <div class="circle" [style]="{background: '#'+current.department.color}"></div> {{language=='en'? current.department.name : current.department.nameAR}}
+                     </td>
+                     <td class="td-actions">
+                        <img [swal]="activate" (confirm)="changeActivation(current.email)" [src]="current.isActive? '../../../../../../assets/images/lock.svg': '../../../../../../assets/images/lock-off.svg'" alt="lock" id="lock">
+                        <img *ngIf="!current.deletedAt" [swal]="delete" (confirm)="deleteUser(current.email)" src="../../../../../../assets/images/delete.svg" alt="delete">
+                        <a [routerLink]="'../employees-view/'+current.email"><img src="../../../../../../../../assets/images/eye.svg" alt="show"></a>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <pagination-controls previousLabel="{{'Previous' | translate}}" nextLabel="{{'Next' | translate}}" (pageChange)="_employeeService.getPage($event)" id="server"></pagination-controls>
+         </div>
+      </div>
+   </section>
+</div>
+
+
+<swal #activate title="{{'Change Activation !!!' | translate}}" text="{{'Delete confirmation - All related information will be deleted.' | translate}}" icon="question" imageHeight="20vh" cancelButtonText="{{'Cancel' | translate}}" confirmButtonText="{{'Yes' | translate}}" confirmButtonColor="red" [showCancelButton]="true" [focusCancel]="true">
+</swal>
+
+
+<swal #delete title="{{'Delete invitations' | translate}} !!!" text="{{'Delete confirmation - All related information will be deleted.' | translate}}" imageUrl="/assets/images/Delete.gif" imageHeight="20vh" cancelButtonText="{{'Cancel' | translate}}" confirmButtonText="{{'Yes' | translate}}" confirmButtonColor="red" [showCancelButton]="true" [focusCancel]="true">
+</swal>

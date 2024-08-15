@@ -1,0 +1,79 @@
+<div *ngIf="_stateMachineService.showVolunteerFilterSeach" class="overShadow" id="overShadow" (click)="_stateMachineService.ShowVolunteerFilterSeach()"></div>
+<app-volunteer-list-filter *ngIf="_stateMachineService.showVolunteerFilterSeach"></app-volunteer-list-filter>
+<section class="section-volunteer">
+    <div class="container-padding">
+       <div class="section-volunteer-header">
+          <h1> {{'Volunteer List' | translate}}</h1>
+          <p>
+             <a href="/"><img src="../../../../../../assets/images/home2.svg" alt="home2">{{'Dashboard' | translate}}</a>
+             <span><i class="fal fa-chevron-right"></i></span>
+             <a  class="a-active"> {{'Volunteer' | translate}}</a>
+          </p>
+       </div>
+       <div class="section-volunteer-tabs mt-4">
+          <div class="tab-order">
+             <a [routerLink]="'../volunteer-list'" routerLinkActive="active" class="b-nav-tab">
+                 {{'Volunteer List' | translate}}
+              </a>
+              <a [routerLink]="'../invtations'" routerLinkActive="active" class="b-nav-tab">
+                 {{'Invitations' | translate}}
+              </a>
+          </div>
+           <div class="section-volunteer-filter"> 
+            <div class="section-volunteer-filter">
+               <app-volunteer-list-search></app-volunteer-list-search>
+               <button type="button" id="btnFilter" (click)="_stateMachineService.ShowVolunteerFilterSeach()">
+                  <i class="fal fa-filter"></i>
+                   {{'Filter' | translate}}
+               </button>
+            </div>
+           </div>
+        </div>
+        <div class="section-vlounteer-content">
+            <app-volunteer-list-table></app-volunteer-list-table>
+           
+        </div>
+    </div>
+
+</section>  
+
+ <!-- Modal Delete -->
+ <div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-0">
+         <img src="../../../../../../../../assets/images/Delete.gif" alt="Delete">
+         <h5>  {{'Delete' | translate}}</h5>
+         <p>  {{'Are sure of the deleting process?' | translate}}</p>
+      </div>
+      <div class="modal-footer justify-content-center pt-0">
+         <button type="button" class="btn-delete" data-bs-dismiss="modal">{{'Delete' | translate}}</button>
+         <button type="button"  class="btn-hide" data-bs-dismiss="modal">{{'Cancel' | translate}}</button>
+         </div>
+   
+   </div>
+ </div>
+</div>
+ <!-- Modal Delete -->
+ <div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-0">
+         <img src="../../../../../../../../assets/images/Delete.gif" alt="Delete">
+         <h5>{{'Delete' | translate}}</h5>
+         <p>{{'Are sure of the deleting process?' | translate}}</p>
+      </div>
+      <div class="modal-footer justify-content-center pt-0">
+         <button type="button" class="btn-delete" data-bs-dismiss="modal">{{'Delete' | translate}}</button>
+         <button type="button"  class="btn-hide" data-bs-dismiss="modal">{{'Cancel' | translate}}</button>
+         </div>
+   
+   </div>
+ </div>
+</div>

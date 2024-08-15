@@ -1,0 +1,28 @@
+<div [formGroup]="form" class="form-setting">
+    <div class="row border-bottom pb-2 align-items-center justify-content-end">
+        <div class="col-md-5">
+            <div class="form-group mt-1">
+                <label for="status">{{'Status' | translate}}</label>
+                <input formControlName="name" type="text" id="status" name="status" class="form-control input-setting">
+                <em *ngIf="validation.validateControl('name')">Please enter Status</em>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group mt-1">
+                <label for="status">{{'StatusAR' | translate}}</label>
+                <input formControlName="nameAR" type="text" id="status" name="status" class="form-control input-setting">
+                <em *ngIf="validation.validateControl('nameAR')">Please enter StatusAR</em>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group mt-1">
+                <label for="colorCode">{{'Color Code' | translate}}</label>
+                <input formControlName="color" type="color" id="colorCode" name="colorCode" class="form-control input-setting color-input">
+                <em *ngIf="validation.validateControl('color')">Please Enter color code</em>
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <button [disabled]="!this.form.valid" (click)="submit()" type="button" class="btn-send btn-access mt-0 w-100">{{'Add Status' | translate}}</button>
+        </div>
+    </div>
+</div>

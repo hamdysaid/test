@@ -1,0 +1,55 @@
+<div *ngIf="_userService.isInRole(roles)">
+  <ng-container *ngIf="allEvent$ | async as events; else loading">
+    <div  [ngClass]="language=='en'?'event-sec':'event-sec tableRtl'" [ngStyle]="{'background':events.response.data.length?':url('+imgPath + events.response.data[0].hallImage+')':''}">
+      <a routerLink="/dashboard/home/event/home/events">{{ "View all Event" | translate }}</a>
+      <div class="mt-auto d-block">
+        <div class="event-sec-texts">
+          <span *ngIf="events.response.data.length">
+            <h1>{{ events.response.data[0].name }}</h1>
+            <p>{{ events.response.data[0].description }}</p>
+          </span>
+        </div>
+        <div class="event-sec-dateTime">
+          <p class="mx-2">
+            <img src="../../../../../../assets/images/calendaradd.svg" alt="date" />
+            <span *ngIf="events.response.data.length">
+              {{ events.response.data[0].startDate | date }} - {{ events.response.data[0].endDate | date }}
+            </span>
+          </p>
+          <p>
+            <img src="../../../../../../assets/images/location-event.svg" alt="location" />
+            <span *ngIf="events.response.data.length">{{ events.response.data[0].locationHint }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div *ngIf="!_userService.isInRole(roles)">
+  <div [ngClass]="language=='en'?'event-sec':'event-sec tableRtl'" *ngIf="empEvent$ | async as events; else loading">
+    <div *ngIf="events.response && events.response.length" [style.background]="'url('+imgPath + events.response[0].hallImage+')'">
+      <a routerLink="/dashboard/home/event/home/events">{{ "View all Event" | translate }}</a>
+      <div class="mt-auto d-block">
+        <div class="event-sec-texts">
+          <h1>{{ events.response[0].name }}</h1>
+          <p>{{ events.response[0].description }}</p>
+        </div>
+        <div class="event-sec-dateTime">
+          <p class="mx-2">
+            <img src="../../../../../../assets/images/calendaradd.svg" alt="date" />
+            {{ events.response[0].startDate | date }} -
+            {{ events.response[0].endDate | date }}
+          </p>
+          <p>
+            <img src="../../../../../../assets/images/location-event.svg" alt="location" />
+            {{ events.response[0].locationHint }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <h1>Loading...</h1>
+</ng-template>

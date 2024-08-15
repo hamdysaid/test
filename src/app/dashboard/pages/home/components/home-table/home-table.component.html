@@ -1,0 +1,85 @@
+<section [ngClass]="language=='en'?'home-table':'home-table tableRtl'">
+    <div class="container-padding">
+       <div class="home-table-data">
+       <h1> {{'Volunteer List' | translate}}</h1>
+    
+       <div class="home-table-list">
+          <table class="table table-borderd table-hover">
+            <thead>
+                <tr>
+                   <th> </th>
+                   <th>{{'Full name' | translate}}</th>
+                   <th>{{'E-mail' | translate}}</th>
+                   <th>{{'Mobile number' | translate}}</th>
+                   <th>{{'StateLabel' | translate}}</th>
+                   <th>{{'Address' | translate}}</th>
+                   <th>{{'StatusLabel' | translate}}</th>
+                   <th>{{'Actions' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr 
+               *ngFor="
+      let current of this._userService.volunteerResponse.data
+        | paginate
+          : {
+              id: 'server',
+              itemsPerPage: _userService.volunteerResponse.pagination.pageSize ,
+              currentPage: _userService.volunteerResponse.pagination.currentPage,
+              totalItems: _userService.volunteerResponse.pagination.rowCount
+            }
+            ;let i = index;
+          "
+               >
+                  <td>  {{ _userService.volunteerResponse.pagination.pageSize * (_userService.volunteerResponse.pagination.currentPage - 1) + i + 1}}</td>
+                  <td class="td-user">
+                     <img [src]="imagePath.normal + current.image" alt=""> {{current.fullName}}
+                  </td>
+                  <td>{{current.email}}</td>
+                  <td>{{current.phoneNumber}}</td>
+                  <td>{{language=='en'? current.principality.name : current.principality.nameAR}}</td>
+                  <td>{{current.addressHint.substring(0,20)}}</td>
+                  <td class="td-status"><div class="circle" [style]="{background: '#'+ current.status.color}"></div> {{language=='en'? current.status.name : current.status.nameAR}}</td>
+                  <td  class="td-actions">
+                     <img [swal]="activate" (confirm)="changeActivation(current.email)" [src]="current.isActive? '../../../../../../assets/images/lock.svg': '../../../../../../assets/images/lock-off.svg'" alt="lock" id="lock">
+                     <!-- <img [swal]="delete" (confirm)="deleteUser(current.email)" src="../../../../../../assets/images/delete.svg" alt="delete">
+                     <a [routerLink]="'../../volunteer/components/volunteer-view/home/invtations'"><img src="../../../../../../assets/images/eye.svg" alt="show"></a>   -->
+                  </td>
+               </tr>
+          
+            </tbody>
+          </table>
+       </div>
+    </div>
+    </div>
+ </section>
+
+
+ <swal
+ #activate
+ title="{{'Change Activation !!!' | translate}}"
+ text="{{'Delete confirmation - All related information will be deleted.' | translate}}"
+ icon="question"
+ imageHeight="20vh"
+ cancelButtonText="{{'Cancel' | translate}}"
+ confirmButtonText="{{'Yes' | translate}}"
+ confirmButtonColor="red"
+ [showCancelButton]="true"
+ [focusCancel]="true"
+ >
+ </swal>
+
+ 
+ <swal
+ #delete
+ title="{{'Delete invitations' | translate}} !!!"
+ text="{{'Delete confirmation - All related information will be deleted.' | translate}}"
+ imageUrl="/assets/images/Delete.gif"
+ imageHeight="20vh"
+ cancelButtonText="{{'Cancel' | translate}}"
+ confirmButtonText="{{'Yes' | translate}}"
+ confirmButtonColor="red"
+ [showCancelButton]="true"
+ [focusCancel]="true"
+ >
+ </swal>

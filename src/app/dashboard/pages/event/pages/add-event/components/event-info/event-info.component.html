@@ -1,0 +1,135 @@
+
+<div *ngIf="!done" [ngClass]="language=='en'?'add-eventNew':'add-eventNew pagedirection'">
+    <h4>{{'Event Info' | translate}}   :</h4>
+    <div *ngIf="!loading; else load" [formGroup]="eventForm">
+        <div class="row border-bottom pb-3">
+            <div class="col-md-12">
+                <div class='file file--upload'>
+                    <label for='input-file'>
+                        <img [src]="img" alt="uploadImage" >
+                        <div>
+                            {{'Upload a photo' | translate}} 
+                            <span>PNG or JPG</span>
+                        </div>
+                    </label>
+                    <input (change)="onFileChange($event)" id='input-file' type='file' />
+                    <em *ngIf="validation.validateControl('hallImageFile')">image reguired</em>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="name">{{'Name' | translate}}</label>
+                    <input formControlName="name" type="text" id="name" name="name" class="form-control input-event">
+                    <em *ngIf="validation.validateControl('name')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="nameAr">{{'NameAR' | translate}}</label>
+                    <input formControlName="nameAR" type="text" id="nameAr" name="nameAr" class="form-control input-event">
+                    <em *ngIf="validation.validateControl('nameAR')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="locationHint">{{'Location Hint' | translate}}</label>
+                    <div class="box-input">
+                        <input formControlName="locationHint" type="text" id="locationHint" name="locationHint" class="form-control">
+                        <img src="../../../../../../../../assets/images/locationModal.svg" alt="location-event">  
+                    </div>
+                    <em *ngIf="validation.validateControl('locationHint')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="locationLink">{{'Location Link' | translate}}</label>
+                    <div class="box-input">
+                        <input formControlName="locationLink" type="text" id="locationLink" name="locationLink" class="form-control">
+                        <img src="../../../../../../../../assets/images/locationModal.svg" alt="location-event">  
+                    </div>
+                    <em *ngIf="validation.validateControl('locationLink')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="description">{{'Description' | translate}}</label>
+                    <textarea formControlName="description" id="description" name="description" class="form-control"></textarea>
+                    <em *ngIf="validation.validateControl('description')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="descriptionAR">{{'DescriptionAR' | translate}}</label>
+                    <textarea formControlName="descriptionAR" id="descriptionAR" name="descriptionAR" class="form-control"></textarea>
+                    <em *ngIf="validation.validateControl('descriptionAR')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="date">{{'Date' | translate}}</label>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="box-date me-3">
+                            <span>{{'From' | translate}}</span>
+                            <input formControlName="startDate" type="date" id="startDate" name="startDate" class="form-control">
+                        </div>
+                        <div class="box-date">
+                            <span>{{'To' | translate}}</span>
+                            <input formControlName="endDate" type="date" id="endDate" name="endDate" class="form-control">
+                        </div>
+                    </div>
+                    <em *ngIf="validation.validateControl('startDate')">{{'Required Input' | translate}}</em>  
+                    <em *ngIf="validation.validateControl('endDate')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="date">{{'Times' | translate}}</label>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="box-date me-3">
+                            <span>{{'From' | translate}}</span>
+                            <input formControlName="startHour" type="time" id="startTime" name="startTime" class="form-control">
+                        </div>
+                        <div class="box-date">
+                            <span>{{'To' | translate}}</span>
+                            <input formControlName="endHour" type="time" id="endTime" name="endTime" class="form-control">
+                        </div>
+                    </div>
+                    <em *ngIf="validation.validateControl('startHour')">{{'Required Input' | translate}}</em>  
+                    <em *ngIf="validation.validateControl('endHour')">{{'Required Input' | translate}}</em>  
+                </div> 
+            </div>
+       
+            <div class="col-md-4">
+                <div class="form-group">
+                    <ng-container *ngIf="stauses$ | async as statuses else load">
+                        <div class="add-eventNew">
+                            <label for="date">{{'Event Color' | translate}}</label>
+                            <ng-select formControlName="statusId" class="">
+                                <!-- _eventStatusService -->
+                                    <ng-option  *ngFor="let status of statuses.response.data" [value]="status.id">
+                                        <div class="circle-select"[style]="{background: '#'+status.color}" ></div>
+                                        {{status.name}}
+                                    </ng-option>
+                            </ng-select>
+                        </div>
+                    </ng-container>
+                </div> 
+            </div>
+            <div class="col-md-12">
+                <button [disabled]="!eventForm.valid" (click)="submit()" type="button" class="btn-send m-auto d-block">{{'Add' | translate}}</button>
+            </div>
+        </div>
+           
+    </div>
+</div>
+
+<ng-template #load>
+    <div class="row justify-content-between my-5">
+        <div class="col-md-6 my-5">
+            <h1 class="splash" data-text="Loading...">Loading...</h1>
+        </div>
+    </div>
+</ng-template>
+
+
+

@@ -1,0 +1,42 @@
+<section [ngClass]="language=='en'?'section-volunteer':'section-volunteer pagedirection'">
+   <div class="container-padding">
+      <div class="section-volunteer-header">
+         <h1>{{'Employees' | translate}}</h1>
+         <p>
+            <a href="/"><img src="../../../../../../../../assets/images/home2.svg" alt="home2">{{'Dashboard' | translate}}</a>
+            <span><i class="fal fa-chevron-right"></i></span>
+            <a href="/dashboard/home/employees/employees-list">{{'Employees' | translate}}</a>
+            <span><i class="fal fa-chevron-right"></i></span>
+            <a class="a-active">{{'Employees view' | translate}}</a>
+         </p>
+      </div>
+      <div class="section-volunteer-tabs mb-0">
+         <div class="tab-order"></div>
+         <div class="section-volunteer-filter">
+            <img src="../../../../../../../../assets/images/lock-off.svg" alt="lock-off" class="lock-off">
+         </div>
+      </div>
+   </div>
+</section>
+
+<section [ngClass]="language=='en'?'section-employees':'section-employees pagedirection'">
+   <div class="container-padding">
+      <div class="row">
+         <div class="col-md-5">
+            <app-employees-view-user [Employee]="employee"></app-employees-view-user>
+            <app-employees-view-access *ngIf="vacation$ | async as vacations else loading"
+               [vacations]="vacations"></app-employees-view-access>
+         </div>
+         <app-employees-view-boxs class="col-md-7" *ngIf="chart$ | async as chart else loading"
+            [chart]="chart"></app-employees-view-boxs>
+         <app-employees-view-volunteer [Invitations]="invitations" class="col-md-4 mb-3"></app-employees-view-volunteer>
+         <app-employees-view-agenda [Agenda]="agenda" class="col-md-4 mb-3"></app-employees-view-agenda>
+         <app-employees-view-event class="col-md-4 mb-3" *ngIf="events$ | async as events else loading"
+            [events]="events.response"></app-employees-view-event>
+      </div>
+   </div>
+</section>
+
+<ng-template #loading>
+   <p>Loading......</p>
+</ng-template>

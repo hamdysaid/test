@@ -1,0 +1,20 @@
+<section  [ngClass]="language=='en'?'section-volunteer':'section-volunteer filterdirection'">
+    <div class="container-padding">
+       <div class="section-volunteer-header">
+          <h1>{{'Event' | translate}}</h1>
+          <p>
+             <a href="/"><img src="../../../../../../../../assets/images/home2.svg" alt="home2">{{'Dashboard' | translate}}</a>
+             <span><i class="fal fa-chevron-right"></i></span>
+             <a  class="a-active">{{'Event' | translate}}</a>
+          </p>
+        
+       </div>
+    </div>
+</section>
+<div class="container-fluid">
+    <div class="row">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+

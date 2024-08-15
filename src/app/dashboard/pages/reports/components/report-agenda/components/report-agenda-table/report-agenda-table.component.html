@@ -1,0 +1,47 @@
+<section class="home-table">
+    <div class="container-padding">
+       <div class="home-table-data border-rad">
+          <div class="home-table-list">
+             <table class="table table-borderd table-hover">
+             <thead>
+                   <tr>
+                      <th> {{'ID' | translate}}</th>
+                      <th>{{'Task title' | translate}}</th>
+                      <th>{{'Date' | translate}}</th>
+                      <th>{{'Times' | translate}}</th>
+                      <th>{{'Manager' | translate}}</th>
+                      <th>{{'StatusLabel' | translate}}</th>                           
+                   </tr>
+             </thead>
+             <tbody>
+                <tr
+                *ngFor="let current of _reportService.agendaData.data
+                | paginate
+                : {
+                    id: 'server',
+                    itemsPerPage: _reportService.agendaData.pagination.pageSize ,
+                    currentPage: _reportService.agendaData.pagination.currentPage,
+                    totalItems: _reportService.agendaData.pagination.rowCount
+                  }
+                  ;let i = index;">
+                  <td>{{ _reportService.agendaData.pagination.pageSize * (_reportService.agendaData.pagination.currentPage - 1) + i + 1}}</td>
+                   <td >{{current.name}}</td>
+                   <td>{{current.dateTimeStart | date}} - {{current.dateTimeEnd | date}}</td>
+                   <td>{{current.startHour}} _ {{current.endHour}}</td>
+                   <td>{{current.manager}}</td>
+                   <!-- <td class="td-status"><div class="circle" [style]="{background: '#'+current.status?.color}"></div> {{current.status}}</td> -->
+
+                   <td class="td-status">{{language=='en'? current.status : current.statusAr}}</td>
+              </tr>
+             </tbody>
+             </table>
+             <pagination-controls
+                previousLabel="{{'Previous' | translate}}"
+                nextLabel="{{'Next' | translate}}"
+                (pageChange)="_reportService.getPage($event)"
+                id="server"
+              ></pagination-controls>
+          </div>
+       </div>
+    </div>
+ </section>

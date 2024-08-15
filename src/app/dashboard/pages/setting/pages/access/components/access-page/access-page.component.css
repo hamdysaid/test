@@ -1,0 +1,306 @@
+[data-tab-content] {
+    display: none;
+  }
+  
+  .active[data-tab-content] {
+    display: block;
+  }
+.tabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    list-style-type: none;
+    min-height: 80vh;
+    height: 100%;
+    margin-bottom: 30px;
+}
+  ul{
+    padding-left: 0px !important;
+  }
+  .tab {
+    margin-top: 10px;
+    cursor: pointer;
+    padding:0px 20px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    font-family: 'Dubai Medium';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 27px;
+    color: rgba(0, 0, 0, 0.6);
+    transition: 0.4s;
+  }
+  .tab img{
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    filter: invert(0%) sepia(94%) saturate(25%) hue-rotate(21deg) brightness(95%) contrast(107%);
+  }
+  .tab.active {
+    border-left: 2px solid #B68934;
+    color: #B68934;
+    font-weight: 500;
+  }
+  .tab.active img,
+  .tab:hover img{
+    filter: invert(53%) sepia(86%) saturate(373%) hue-rotate(1deg) brightness(89%) contrast(82%);
+  }
+  .tab:hover {
+    border-left: 2px solid #B68934;
+    color: #B68934;
+  }
+.column-one{
+    background: #fff;
+    padding: 10px 0px 20px 0;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+.tab-content{
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+}
+.form-setting{
+    position: relative;
+}
+.form-setting label{
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 16px;
+    /* line-height: initial; */
+    color: #000000;
+    /* margin-bottom: 8px; */
+}
+.form-setting .box-inputs{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding:0px 15px 0 0px;
+    background: rgba(217, 217, 217, 0.2);
+    border: 0.5px solid #A3A3A3;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+}
+.form-setting .box-inputs input{
+    background: transparent;
+    border: none;
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 22px;
+    color: #000000;
+}
+.form-setting .box-inputs span img{
+
+    filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(217deg) brightness(96%) contrast(108%);
+}
+.form-setting .box-inputs span{
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.form-setting .form-group{
+    position: relative;
+    margin-bottom: 15px;
+}
+.form-setting  select,
+.form-setting  .input-setting
+ {
+    background: rgba(217, 217, 217, 0.2);
+    border: 0.5px solid #A3A3A3;
+    border-radius: 10px;
+    height: 50px;
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 22px;    
+    color: #000000;
+    font-family: 'Cairo';
+    padding: 0 10px;
+}
+.form-setting .form-group svg{ 
+    position: absolute;
+    right: 15px;
+    top: 50px;
+}
+.form-setting .file > label{
+    padding: 8px;
+}
+.form-setting .btn-send{
+    width: 364px;
+    margin-top: 40px ;
+}
+.btn-access{
+    font-size: 17px ;
+    width: 100% !important;
+}
+.form-setting .box-state{
+    background: rgba(217, 217, 217, 0.2);
+    border: 0.5px solid #A3A3A3;
+    border-radius: 10px;
+    height: 66px;
+    padding: 0px 10px 0 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.form-setting .box-state p{
+    font-family: "Cairo";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 30px;
+    color: #000000;
+    margin-bottom: 0px;
+    position: relative;
+}
+.form-setting .box-state .trash-event:lang(ar){
+    margin-right: 93px;
+}
+.form-setting .box-state .edit-event:lang(ar){
+  margin-right: 6px;
+}
+
+
+.form-setting .box-state img:hover{
+   transform: scale(1.2);
+   cursor: pointer;
+}
+.rad-div{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+    position: absolute;
+    top: 7px;
+}
+.form-setting .btn-save{
+    position: absolute;
+    top: -120px;
+    right: -20px;
+    width: 180px !important;
+    height: 46px;
+    font-size: 17px;
+}
+.form-text label{
+    font-family: 'Dubai Medium';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 34px;
+    color: #000000;
+}
+.form-text label span{
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 34px;
+    color: #000000;
+    text-transform: lowercase;
+    margin-left: 5px;
+}
+.form-setting .forgot{
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;  
+    text-decoration-line: underline;
+    color: #111111;
+}
+.form-setting h1{
+    font-family: 'Dubai Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 42px;
+     color: #000000;   
+     margin-bottom: 30px; 
+}
+#Status{
+    height: 83vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+#Status::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#Status::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+#Status::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #B68934;
+}
+.checkbox-des{
+    width: 20%;
+    margin-top: 30px;
+}
+
+.checkbox-des .form-group {
+    display: block;
+    margin-bottom: 30px;
+  }
+  
+  .checkbox-des .form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  
+  .checkbox-des .form-group label {
+    position: relative;
+    cursor: pointer;
+    font-family: 'Dubai';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #000000;
+  }
+  
+  .checkbox-des .form-group label:before {
+    content:'';
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #B68934;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .checkbox-des .form-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #B68934;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+  .color-input{
+    padding: 10px !important;
+    width: 72px !important;
+  }
+  .pagedirection{
+    direction: rtl;
+  }

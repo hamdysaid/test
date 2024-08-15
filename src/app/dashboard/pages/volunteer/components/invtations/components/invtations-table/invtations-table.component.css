@@ -1,0 +1,11 @@
+.proof-modal .file--upload > label{
+    height: 83px;
+}
+.proof-modal .file label img{
+    width: 84px;
+    height: 65px;
+}
+::ng-deep .modal-dialog {
+    max-width: 650px !important;
+    margin: auto !important;
+ }

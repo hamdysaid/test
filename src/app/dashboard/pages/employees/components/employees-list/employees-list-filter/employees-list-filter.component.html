@@ -1,0 +1,45 @@
+<section class="section-filter" id="section-filter">
+    <div [formGroup]="form">
+      <div [ngStyle]="language == 'en' ? {'direction': 'ltr'} : {'direction': 'rtl'}">
+       <div class="form-group">
+          <label for="degree">{{'Department' | translate}}</label>
+          <ng-select formControlName="departmentId" id="departmentId">
+            <ng-option [value]="null" selected>{{'All' | translate}}</ng-option>
+            <ng-option *ngFor="let current of departmentResponse" [value]="current.id">{{language=='en'? current.name : current.nameAR}}</ng-option>
+         </ng-select>
+       </div>
+      </div>
+       <div class="form-group">
+          <label for="worktime">{{'Worktime' | translate}}</label>
+          <div class="row">
+             <div class="col-md-6">
+                <div class="box-input">
+                   <span>{{'From' | translate}}</span>
+                   <input formControlName="startTime" type="time" id="startDate" class="form-control">
+                </div>
+             </div>
+             <div class="col-md-6">
+                <div class="box-input">
+                   <span>{{'To' | translate}}</span>
+                   <input formControlName="endTime" type="time" id="endDate" class="form-control">
+                </div>
+             </div>
+          </div>
+
+       </div>
+       <div [ngStyle]="language == 'en' ? {'direction': 'ltr'} : {'direction': 'rtl'}">
+       <div class="form-group">
+          <label for="state">{{'StateLabel' | translate}}</label>
+            <ng-select formControlName="principalityId" id="state">
+               <ng-option [value]="null" selected>{{'All' | translate}}</ng-option>
+               <ng-option *ngFor="let current of principalityResponse" [value]="current.id">{{language=='en'? current.name : current.nameAR}}</ng-option>
+             </ng-select>
+       </div>
+      </div>
+       <div class="form-group">
+          <label for="state">{{'Active' | translate}}</label>
+           <input type="checkbox" formControlName="isActive" id="gender">
+       </div>
+       <button type="button" (click)="submit()" class="btn-send m-auto d-block">{{'Submit' | translate}}</button>
+      </div>
+ </section>

@@ -1,0 +1,26 @@
+<div [ngClass]="language=='en'?'section-employees-card':'section-employees-card pagedirection'">
+    <div class="section-employees-card-img">
+       <img [src]="imagePath.normal+Employee.image " alt="employee">
+    </div>
+    <div class="section-employees-card-text">
+       <h3>{{Employee.fullName}}<div class="status-circle" [style]="{background: Employee.isActive? '#4FD91E':'#000'}"></div></h3>
+       <div class="div-texts"> 
+          <img src="/assets/images/at-sign.svg" alt="at-sign">
+          <span>{{Employee.email}}</span>
+          <img src="/assets/images/phone-call.svg" alt="phone-call">
+          <span>{{Employee.phoneNumber}}</span>
+          <img src="/assets/images/hash.svg" alt="hash">
+          <span>{{Employee.internationalId}}</span>
+       </div>
+       <div class="div-texts">
+          <img src="/assets/images/clock.svg" alt="clock">
+          <span>{{Employee.startWorkTime}} - {{Employee.endWorkTime}}</span>
+          <img src="/assets/images/location.svg" alt="location">
+          <span>{{Employee.principality.name}}  </span>
+          <img src="/assets/images/doc.svg" alt="doc">
+          <span>{{Employee.employeeNumber}}</span>
+          <!-- <div class="back-Conference" style="background: #197701;"></div>
+          <span>Conference section</span> -->
+       </div>
+    </div>
+</div>

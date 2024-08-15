@@ -1,0 +1,13 @@
+<div class="s-layout">
+   <div *ngIf="language === 'en'">
+      <app-sidebar ></app-sidebar>
+   </div>
+      <main class="s-layout__content">
+          <app-topbar></app-topbar>
+          <router-outlet></router-outlet>
+      </main>
+      <div *ngIf="language === 'ar'">
+        <app-sidebar ></app-sidebar>
+     </div>
+  </div>
+    

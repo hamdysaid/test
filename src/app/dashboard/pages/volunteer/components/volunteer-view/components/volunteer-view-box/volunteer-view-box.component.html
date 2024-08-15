@@ -1,0 +1,81 @@
+<section  [ngClass]="language=='en'?'box-volunteer':'box-volunteer modaldirection'">
+    <div class="container-padding">
+       <div class="style-box-volunteer">
+          <div class="row">
+             <div class="col-md-7"> 
+                <div class="box-volunteer-flex">
+                   <div class="box-volunteer-flex-img">
+                      <img [src]="imgPath.normal + userResponse.image" alt="Volunteer">
+                   </div>
+                   <div class="box-volunteer-flex-texs">
+                      <h1>{{userResponse.fullName}} <div class="div-status" [style]="{background: userResponse.available?'#03810F':'#000'}"></div></h1>
+                      <p>
+                         <span><img src="../../../../../../../../assets/images/at-sign.svg" alt="">{{userResponse.email}} </span>
+                         <span><img src="../../../../../../../../assets/images/phone.svg" alt="phone">{{userResponse.phoneNumber}}</span>
+                         <span><img src="../../../../../../../../assets/images/clock.svg" alt="clock">10 h</span>
+                      </p>
+                      <p>
+                         <span><img src="../../../../../../../../assets/images/age.svg" alt="age">{{userResponse.dateOfBirth | date}} </span>
+                         <span><img src="../../../../../../../../assets/images/doc.svg" alt="doc">{{userResponse.internationalId}}</span>
+                         <span><img src="../../../../../../../../assets/images/university.svg" alt="university">{{language=='en'? userResponse.principality.name : userResponse.principality.nameAR}}</span>
+                         <span><img src="../../../../../../../../assets/images/location.svg" alt="location">{{userResponse.addressHint}}</span>
+                      </p>
+                   </div>
+                </div>
+
+             </div>
+             <div class="col-md-5">
+                <div class="row">
+                   <div class="col-md-6">
+                      <div class="box-volunteer-days">
+                         <h3 class="title-volunteer">{{'Volunteer days' | translate}}</h3>
+                         <div class="row">
+                            <div class="col-md-3 col-6">
+                               <span [className]="contain(6)? 'span-active ms-2':''">{{'Saturday' | translate}}</span>
+                            </div>
+                            <div class="col-md-3 col-6">
+                               <span [className]="contain(0)? 'span-active ms-2':''">{{'Sunday' | translate}}</span>
+                            </div>
+                            <div class="col-md-3 col-6">
+                               <span [className]="contain(1)? 'span-active ms-2':''">{{'Monday' | translate}}</span>
+                            </div>
+                            <div class="col-md-3 col-6">
+                               <span [className]="contain(2)? 'span-active ms-2':''" >{{'Tuesday' | translate}}</span>
+                            </div>
+                            <div class="col-md-3 col-6">
+                               <span [className]="contain(3)? 'span-active ms-2':''">{{'Wednesday' | translate}}</span>
+                            </div>
+                            <div class="col-md-3 col-6">
+                               <span  [className]="contain(4)? 'span-active ms-2':'ms-2'">{{'Thursday' | translate}}</span>
+                            </div>
+                            <div class="col-md-3 col-6">
+                               <span [className]="contain(5)? 'span-active ms-2':'ms-2'">{{'Friday' | translate}}</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-md-6">
+                      <div class="box-volunteer-times">
+                         <h3 class="title-volunteer">{{'Volunteer times' | translate}}</h3>
+                         <div class="d-flex align-items-center time-volunteer">
+                            <p>
+                               <span class="address">{{'From' | translate}}</span>
+                               <span>{{userResponse.classDateTimes?.at(0)?.start }}</span>
+                            </p>
+                            <p class="ps-3">
+                               <span class="address">{{'To' | translate}}</span>
+                               <span>{{userResponse.classDateTimes?.at(0)?.end }}</span>
+                            </p>
+                         </div>
+                       
+                      </div>
+                   </div>
+                </div>
+            
+             </div>
+          </div>
+       </div>
+   
+
+    </div>
+ </section>

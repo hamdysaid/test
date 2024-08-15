@@ -1,0 +1,173 @@
+<div id="Invitations">
+   <div class="row">
+      <div class="col-md-4 mb-2" *ngFor="let current of this._invitationService.entities">
+         <!-- <div [style]="{background: current.certificateCreated ? 'green':'',
+       color: current.certificateCreated ? '#fff !important':'',
+       opacity: current.certificateCreated ? '.7':''}" ></div> -->
+         <div [ngClass]="language=='en'?'card-volunteer':'card-volunteer modaldirection'"
+            (click)="clickToUpdateInvitation(current.id)">
+            <!-- <img [src]="imagePath.normal + current.status.name" alt="check-circle" class="check-circle"> -->
+
+            <i [style]="{color: current.certificateCreated ? current.status.color:''}"
+               class="fal fa-check-circle check-circle"></i>
+            <h4>{{current.jopTitle}}</h4>
+            <p class="p-head">{{current.description}} </p>
+            <p class="p-details">
+               <span><img src=".../../../../../../../../../../assets/images/clock.svg" alt="">{{current.numberOfHours}}
+                  h</span>
+               <span><img src=".../../../../../../../../../../assets/images/calendaradd.svg" alt="">{{current.fromStart
+                  | date}} _ {{current.toEnd | date}}</span>
+               <span *ngFor="let dates of current.classDateTimes">{{getDayName(dates.day)}}</span>
+            </p>
+         </div>
+      </div>
+   </div>
+
+</div>
+
+<ng-template #updateInvitation let-close="close">
+   <div [ngClass]="language=='en'?'modal-add-volunteer':'modal-add-volunteer modaldirection'">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div [formGroup]="invitationForm">
+               <input type="number" hidden formControlName="id">
+               <div class="modal-body pt-0">
+                  <i [style]="{}" class="fal fa-check-circle img-check check-success"></i>
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label for="">{{'Job Title' | translate}}</label>
+                           <input formControlName="jopTitle" type="text" class="form-control volunteer-input">
+                           <em *ngIf="validation.validateControl('jopTitle')" class="errorvalidationmessgae">{{'Required
+                              Input' | translate}}</em>
+                        </div>
+                        <div class="form-group">
+                           <label for="jopTitleAR">{{'Job Title' | translate}}</label>
+                           <input formControlName="jopTitleAR" type="text" class="form-control volunteer-input">
+                           <em *ngIf="validation.validateControl('jopTitleAR')"
+                              class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                        </div>
+                        <div class="form-group">
+                           <label for="description">{{'Description' | translate}}</label>
+                           <textarea formControlName="description" name="description" id="description"
+                              class="form-control volunteer-input"></textarea>
+                           <em *ngIf="validation.validateControl('description')"
+                              class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                        </div>
+                        <div class="form-group">
+                           <label for="descriptionAR">{{'DescriptionAR' | translate}}</label>
+                           <textarea formControlName="descriptionAR" name="descriptionAR" id="descriptionAR"
+                              class="form-control volunteer-input"></textarea>
+                           <em *ngIf="validation.validateControl('descriptionAR')"
+                              class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                        </div>
+                        <div class="form-group">
+                           <label for="volunteerTimes">{{'Date' | translate}}</label>
+                           <div
+                              [ngClass]="language=='en'?'d-flex align-items-center volunteerTimes':'d-flex align-items-center volunteerTimes boxmarige'">
+                              <div class="box-inputs me-3">
+                                 <label for="startDate">From</label>
+                                 <input formControlName="fromStart" type="date" class="form-control">
+                              </div>
+                              <div class="box-inputs">
+                                 <label for="startDate">To</label>
+                                 <input formControlName="toEnd" type="date" class="form-control">
+                              </div>
+                           </div>
+                           <em *ngIf="validation.validateControl('fromStart')"
+                              class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                              <br>
+                           <em *ngIf="validation.validateControl('toEnd')" class="errorvalidationmessgae">{{'Required
+                              Input' | translate}}</em>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="numberHours">{{'Number hours' | translate}}</label>
+                                 <div class="box-icon">
+                                    <input formControlName="numberOfHours" type="text" class="form-control">
+                                    <img src="../../../../../../../../assets/images/clock.svg" alt="location">
+                                 </div>
+                                 <em *ngIf="validation.validateControl('numberOfHours')"
+                                    class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="numberDays">{{'Number days' | translate}}</label>
+                                 <div class="box-icon">
+                                    <input formControlName="numberOfDays" type="text" class="form-control">
+                                    <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="location">
+                                 </div>
+                                 <em *ngIf="validation.validateControl('numberOfDays')"
+                                    class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label for="">{{'Volunteer days' | translate}}</label>
+                           <div class="row button-form">
+                              <select multiple formControlName="daysAsString" class="select-public">
+                                 <option *ngFor="let current of dayOfWeek" [value]="current.id">{{language=='en'? current.nameOfDay : current.nameOfDayAr}}
+                                 </option>
+                              </select>
+                           </div>
+                           <em *ngIf="validation.validateControl('daysAsString')"
+                              class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                        </div>
+                        <div class="form-group mt-4">
+                           <label for="volunteerDate">{{'Volunteer times' | translate}}</label>
+                           <div
+                              [ngClass]="language=='en'?'d-flex align-items-center volunteerTimes':'d-flex align-items-center volunteerTimes boxmarige'">
+                              <div class="box-inputs me-3">
+                                 <label for="startDate">From</label>
+                                 <input formControlName="start" type="time" class="form-control">
+                              </div>
+                              <div class="box-inputs">
+                                 <label for="startDate">To</label>
+                                 <input formControlName="end" type="time" class="form-control">
+                              </div>
+                           </div>
+                           <em *ngIf="validation.validateControl('start')" class="errorvalidationmessgae">{{'Required
+                              Input' | translate}}</em>
+                              <br>
+                           <em *ngIf="validation.validateControl('end')" class="errorvalidationmessgae">{{'Required
+                              Input' | translate}}</em>
+                        </div>
+                        <div class="form-group">
+                           <label for="address">{{'Address' | translate}}</label>
+                           <div class="box-icon">
+                              <input formControlName="addressHint" type="text" class="form-control">
+                              <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+                           </div>
+                           <em *ngIf="validation.validateControl('addressHint')"
+                              class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                        </div>
+                        <div class="form-group">
+                           <label for="address">{{'Address Link' | translate}}</label>
+                           <div class="box-icon">
+                              <input formControlName="addressLink" type="text" class="form-control">
+                              <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+                           </div>
+                           <em *ngIf="validation.validateControl('addressLink')"
+                              class="errorvalidationmessgae">{{'Required Input' | translate}}</em>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+               <div class="modal-footer justify-content-center pt-0">
+                  <button [disabled]="!invitationForm.valid" (click)="submit()" type="button" class="btn-send">{{'Edit'
+                     | translate}}</button>
+                  <button type="button" class="btn-hide" (click)="close()">{{'Cancel' | translate}}</button>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+
+</ng-template>

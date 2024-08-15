@@ -1,0 +1,80 @@
+<section [ngClass]="language=='en'?'section-filter':'section-filter filterdirection'" id="section-filter">
+   <div [formGroup]="form">
+      <div class="form-group">
+         <label for="age">{{'Age' | translate}}</label>
+         <div class="box-input">
+            <input formControlName="age" type="text" id="age" class="form-control">
+         </div>
+
+      </div>
+      <div [ngStyle]="language == 'en' ? {'direction': 'ltr'} : {'direction': 'rtl'}">
+         <div class="form-group">
+            <label for="degree">{{'Degree' | translate}}</label>
+            <ng-select formControlName="degreeId" name="degree" id="degree">
+               <ng-option [value]="null" selected>{{'All' | translate}}</ng-option>
+               <ng-option *ngFor="let current of _degreeService.entities"
+                  [value]="current.id">{{current.name}}</ng-option>
+            </ng-select>
+         </div>
+      </div>
+      <div [ngStyle]="language == 'en' ? {'direction': 'ltr'} : {'direction': 'rtl'}">
+         <div class="form-group">
+            <label for="state">{{'StateLabel' | translate}}</label>
+            <ng-select formControlName="principalityId" name="state" id="state">
+               <ng-option [value]="null" selected>{{'All' | translate}}</ng-option>
+               <ng-option *ngFor="let current of _principalityService.entities"
+                  [value]="current.id">{{current.name}}</ng-option>
+            </ng-select>
+         </div>
+      </div>
+      <div [ngStyle]="language == 'en' ? {'direction': 'ltr'} : {'direction': 'rtl'}">
+         <div class="form-group">
+            <label for="state">{{'Gender' | translate}}</label>
+            <ng-select formControlName="genderId" name="state" id="state">
+               <ng-option [value]="null" selected>{{'All' | translate}}</ng-option>
+               <ng-option *ngFor="let current of _genderService.entities"
+                  [value]="current.id">{{current.name}}</ng-option>
+            </ng-select>
+         </div>
+      </div>
+      <!-- <div class="form-group">
+         <label for="work">{{'Work' | translate}}</label>
+         <div class="box-input">
+            <input type="text" id="work" class="form-control">
+            <img src="../../../../../../../../assets/images/work.svg" alt="work">
+         </div>
+    
+      </div> -->
+      <div class="form-group">
+         <label for="work">{{'Work' | translate}}</label>
+         <div class="row">
+            <div class="col-md-6">
+               <div class="box-input">
+                  <span>{{'From' | translate}}</span>
+                  <input formControlName="start" type="time" id="work" class="form-control">
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="box-input">
+                  <span>{{'To' | translate}}</span>
+                  <input formControlName="end" type="time" id="work" class="form-control">
+               </div>
+            </div>
+         </div>
+
+      </div>
+      <div [ngStyle]="language == 'en' ? {'direction': 'ltr'} : {'direction': 'rtl'}">
+         <div class="form-group buttons-days">
+            <label for="volunteerDays">{{'Volunteer days' | translate}}</label>
+            <div class="row button-form">
+               <select multiple formControlName="daysAsString" class="select-public">
+                  <option *ngFor="let current of dayOfWeek" [value]="current.id">{{language=='en'? current.nameOfDay :
+                     current.nameOfDayAr}}</option>
+               </select>
+            </div>
+         </div>
+      </div>
+      <button (click)="submit()" type="button" class="btn-send m-auto d-block">{{'Search' | translate}}</button>
+
+   </div>
+</section>

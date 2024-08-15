@@ -1,0 +1,51 @@
+<div id="Department">
+    <app-department-form></app-department-form>
+    <div class="row mt-4 ">
+        <div class="col-md-12">
+            <app-department-list *ngFor="let current of _departmentService.entities" [department]="current"></app-department-list>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalDegree" tabindex="-1" aria-labelledby="modalStateLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Edit Department' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="_popup.getForm()" [formGroup]="_popup.getForm()" class="form-setting">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Department' | translate}}</label>
+                                <input formControlName="name" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'DepartmentAR' | translate}}</label>
+                                <input formControlName="nameAR" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Color Code' | translate}}</label>
+                                <input formControlName="color" type="color" class="form-control input-setting color-input">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-bs-dismiss="modal" (click)="submit()" type="button" class="btn-send btn-access">{{'Update' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

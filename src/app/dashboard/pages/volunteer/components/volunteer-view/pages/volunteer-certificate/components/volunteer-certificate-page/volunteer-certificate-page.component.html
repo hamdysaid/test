@@ -1,0 +1,54 @@
+<div id="Certificate">
+   <div class="row">
+      <div class="col-md-4" *ngFor="let current of this._proofCertificateService.pagenationEntities.data">
+         <div class="card-volunteer" (click)="showCertficate(current.id, current.invitation.id)">
+            <!-- <img src="../../../../../../../../../../assets/images/Certificate.svg" alt="check-circle" class="check-circle"> -->
+
+            <i [style]="{color: current.certificateCreated ? 'green':''}" class="fal fa-file-certificate check-circle"></i>
+            <h4>{{current.invitation.jopTitle}}</h4>
+            <p class="p-head">{{current.invitation.description}} </p>
+            <p class="p-details">
+               <span><img src=".../../../../../../../../../../assets/images/clock.svg" alt="">{{current.invitation.numberOfHours}} h</span>
+               <span><img src=".../../../../../../../../../../assets/images/calendaradd.svg" alt="">{{current.invitation.fromStart | date}} _ {{current.invitation.toEnd | date}}</span>
+               <span *ngFor="let day of current.invitation.classDateTimes">{{getDayName(day.day)}}</span>
+            </p>
+         </div>
+
+      </div>
+   </div>
+</div>
+
+<ng-template #showCertificateModalLabel let-close="close">
+   <div #printContent class="show-certificate">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="show_certificate" class="modal-body">
+               <img src="../../../../../../../../assets/images/check-circle.svg" alt="check-circle" class="img-check check-success">
+               <div>
+                  <div class="show-certificate-texts">
+                     <img src="../../../../../../../../assets/images/logo-cert.svg" alt="logo-certificate" class="logo-certificate">
+                     <h4>{{'Volunteer Certificate' | translate}}</h4>
+                     <p>The volunteer work platform certifies that</p>
+                     <h2>{{certficate.volunteerUser?.fullName}}</h2>
+                     <span>In appreciation of the effort he made in implementing the opportunity</span>
+                     <p>{{certficate.invitation?.jopTitle}}</p>
+                     <h5>
+                        In which the volunteer provided ({{certficate.invitation?.numberOfHours}}) volunteer hours <br>
+                        from {{certficate.invitation?.fromStart | date}} to {{certficate.invitation?.toEnd | date}}
+                     </h5>
+                     <img width="50px" [src]="imagePath.normal + certficate.signature" alt="signature" class="signature">
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer justify-content-center pt-0">
+               <button type="button" (click)="send()" class="btn-send">Send </button>
+               <button type="button" class="btn-hide" (click)="print()">Print</button>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</ng-template>

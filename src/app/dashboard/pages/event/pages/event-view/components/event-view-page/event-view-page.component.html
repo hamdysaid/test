@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="view-event">
+            <app-event-view-data *ngIf="evendId != null" [EventId]="evendId"></app-event-view-data>
+            <app-event-view-schedule *ngIf="evendId != null" [EventId]="evendId"></app-event-view-schedule>
+            <app-event-view-speakers *ngIf="evendId != null" [EventId]="evendId"></app-event-view-speakers>
+            <app-event-view-sponsors *ngIf="evendId != null" [EventId]="evendId"></app-event-view-sponsors>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <app-design *ngIf="evendId != null" [EventId]="evendId"></app-design>
+    </div>
+
+</div>

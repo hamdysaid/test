@@ -1,0 +1,17 @@
+<div class="view-style">
+<h4 class="border-bottom h-head">{{'Event schedule' | translate}}</h4>
+<div *ngIf="eventSchedule$ | async as respnseSchedule else loading" class="height-boxs-event">
+    <div *ngFor="let current of respnseSchedule.response" class="box-event-details">
+        <div class="d-flex align-items-center flex-view1">
+            <img src="../../../../../../../../assets/images/clock.svg" alt="calendaradd">
+            <span class="span-light">{{'From' | translate}}</span>
+            <span >{{current.startHour}}</span>
+            <span class="span-light">{{'To' | translate}}</span>
+            <span >{{current.endHour}}</span>
+        </div>
+        <p>{{current.description}}</p>
+    </div>
+</div>
+</div>
+
+<ng-template #loading></ng-template>

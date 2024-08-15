@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-end m-2" *ngIf="!_userService.isUserAdmin()">
+    <button class="btn btn-primary" (click)="openCreateVacationModal()">{{'Create Vacation' | translate}}</button>
+</div>
+<app-home-boxs [AgendaCurrentValue]="chartsForUserNumbers.agenda" [EmployeeCurrentValue]="chartsForUserNumbers.employee" [EventCurrentValue]="chartsForUserNumbers.event" [VolunteerCurrentValue]="chartsForUserNumbers.volunteer" [isAdmin]="_userService.isInRole(roles)" [chart]="chartEmployee"></app-home-boxs>
+<section class="many-feature">
+    <div class="container-padding">
+        <div class="row">
+            <app-home-chart *ngIf="_userService.hasUserPolicy('ReportVolunteer')" class="col-md-6"></app-home-chart>
+            <app-home-agenda *ngIf="_userService.hasUserPolicy('ReportAgenda')" class="col-md-3"></app-home-agenda>
+            <app-home-event *ngIf="_userService.hasUserPolicy('ReportEvent')" class="col-md-3"></app-home-event>
+        </div>
+    </div>
+</section>
+<app-home-table *ngIf="_userService.hasUserPolicy('ReportVolunteer')"></app-home-table>

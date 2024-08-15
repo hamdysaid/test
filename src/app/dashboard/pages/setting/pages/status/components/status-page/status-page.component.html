@@ -1,0 +1,205 @@
+<div id="Status">
+    <div class="form-setting">
+        <h1>{{'Status Volunteer' | translate}}</h1>
+    </div>
+    <app-form-status-volunteer></app-form-status-volunteer>
+    <div class="row mt-4 border-bottom">
+        <div class="col-md-4" *ngFor="let current of _volunteerStatusService.entities">
+            <app-list-status-volunteer [VolunteerStatus]="current"></app-list-status-volunteer>
+        </div>
+    </div>
+
+    <div class="form-setting mt-3">
+        <h1>{{'Status Guests' | translate}} </h1>
+    </div>
+    <app-form-status-guests></app-form-status-guests>
+    <div class="row mt-4 border-bottom">
+        <div class="col-md-4" *ngFor="let current of _guestStatusService.entities">
+            <app-list-status-guests [GuestStatus]="current"></app-list-status-guests>
+        </div>
+    </div>
+
+    <div class="form-setting mt-3">
+        <h1> {{'Status Event' | translate}}</h1>
+    </div>
+    <app-form-status-event></app-form-status-event>
+    <div class="row mt-4 border-bottom">
+        <div class="col-md-4" *ngFor="let current of _eventStatusService.entities">
+            <app-list-status-event [EventStatus]="current"></app-list-status-event>
+        </div>
+    </div>
+
+    <div class="form-setting mt-3">
+        <h1> {{'Status Employees' | translate}}</h1>
+    </div>
+    <app-form-status-employees></app-form-status-employees>
+    <div class="row mt-4">
+        <div class="col-md-4" *ngFor="let current of _employeeStatusService.entities">
+            <app-list-status-employees [EmployeeStatus]="current"></app-list-status-employees>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal Status Volunteer-->
+<div class="modal fade" id="modalVolunteer" tabindex="-1" aria-labelledby="modalVolunteerLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Edit Status Volunteer' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="_popupVolunteer.getForm()" [formGroup]="_popupVolunteer.getForm()" class="form-setting">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Status' | translate}}</label>
+                                <input formControlName="name" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'StatusAR' | translate}}</label>
+                                <input formControlName="nameAR" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Color Code' | translate}}</label>
+                                <input formControlName="color" type="color" class="form-control input-setting color-input">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-bs-dismiss="modal" (click)="submitVolunteer()" type="button" class="btn-send btn-access">{{'Update Status' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Status Guest-->
+<div class="modal fade" id="modalGuest" tabindex="-1" aria-labelledby="modalGuestLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Edit Status Guest' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="_popupGuest.getForm()" [formGroup]="_popupGuest.getForm()" class="form-setting">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Status' | translate}}</label>
+                                <input formControlName="name" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'StatusAR' | translate}}</label>
+                                <input formControlName="nameAR" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Color Code' | translate}}</label>
+                                <input formControlName="color" type="color" class="form-control input-setting color-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-bs-dismiss="modal" (click)="submitGuest()" type="button" class="btn-send btn-access">{{'Update Status' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Status Event-->
+<div class="modal fade" id="modalEvent" tabindex="-1" aria-labelledby="modalEventLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Edit Status Event' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="_popupEvent.getForm()" [formGroup]="_popupEvent.getForm()" class="form-setting">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Status' | translate}}</label>
+                                <input formControlName="name" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'StatusAR' | translate}}</label>
+                                <input formControlName="nameAR" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Color Code' | translate}}</label>
+                                <input formControlName="color" type="color" class="form-control input-setting color-input">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-bs-dismiss="modal" (click)="submitEvent()" type="button" class="btn-send btn-access">{{'Update Status' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Status Employee-->
+<div class="modal fade" id="modalEmployee" tabindex="-1" aria-labelledby="modalEmployeeLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Edit Status Employee' | translate}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="_popupEmployee.getForm()" [formGroup]="_popupEmployee.getForm()" class="form-setting">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Status' | translate}}</label>
+                                <input formControlName="name" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'StatusAR' | translate}}</label>
+                                <input formControlName="nameAR" type="text" class="form-control input-setting">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">{{'Color Code' | translate}}</label>
+                                <input formControlName="color" type="color" class="form-control input-setting color-input">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button data-bs-dismiss="modal" (click)="submitEmployee()" type="button" class="btn-send btn-access">{{'Update Status' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

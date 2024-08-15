@@ -1,0 +1,103 @@
+<section class="section-filter" id="section-filter">
+    <div [formGroup]="form">
+       <div class="form-group">
+          <label for="title">{{'Title' | translate}}</label>
+          <div class="box-input">
+             <input formControlName="name" type="text" id="title" class="form-control">
+          
+          </div>
+       </div>
+       <div class="form-group">
+         <label for="titleAR">{{'TitleAR' | translate}}</label>
+         <div class="box-input">
+            <input formControlName="nameAR" type="text" id="titleAR" class="form-control">
+         
+         </div>
+      </div>
+       <div class="form-group">
+         <label for="description">{{'Description' | translate}}</label>
+         <textarea formControlName="description" type="text" id="description" class="form-control" ></textarea>
+      </div>
+      <div class="form-group">
+         <label for="descriptionAR">{{'DescriptionAR' | translate}}</label>
+         <textarea formControlName="descriptionAR" type="text" id="descriptionAR" class="form-control" ></textarea>
+      </div>
+      <div class="form-group">
+         <label for="work">{{'Times' | translate}}</label>
+         <div class="row">
+            <div class="col-md-6">
+               <div class="box-input">
+                  <span>{{'From' | translate}}</span>
+                  <input formControlName="startHour" type="time" id="work" class="form-control">
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="box-input">
+                  <span>{{'To' | translate}}</span>
+                  <input formControlName="endHour" type="time" id="work" class="form-control">
+               </div>
+            </div>
+         </div>
+      </div>
+       <div class="form-group">
+          <label for="date">{{'Date start' | translate}}</label>
+          <div class="box-input">
+            <input formControlName="dateTimeStart" type="date" id="date" class="form-control">
+         </div>
+       </div>
+       <div class="form-group">
+         <label for="dateEnd">{{'Date end' | translate}}</label>
+         <div class="box-input">
+           <input formControlName="dateTimeEnd" type="date" id="dateEnd" class="form-control">
+        </div>
+      </div>
+       <div *ngIf="role!='employee'" class="form-group">
+          <label for="manager">{{'Manager' | translate}}</label>
+              <ng-select  formControlName="leaderId" name="manager" id="manager" >
+               <!--<ng-option [value]="null" selected>{{'All' | translate}}</ng-option>-->
+               <ng-option *ngFor="let current of employeeResponse" [value]="current.id">{{current.email}} _ {{current.fullName}}</ng-option>
+             </ng-select>
+       </div>
+       <div class="form-group">
+          <label for="employees">{{'Employees' | translate}}</label>
+          <ng-select  name="employees" id="employees" [multiple]="true" formControlName="emplyeeEmailsAsString">
+               <ng-option *ngFor="let current of employeeResponse" [value]="current.email">{{current.email}} _ {{current.fullName}}</ng-option>
+          </ng-select>
+       </div>
+    
+      <div class="add-eventNew">
+         <h2 class="mb-3">{{'Event Color' | translate}} :</h2>
+         <ng-select formControlName="statusId" class="">
+            <ng-option *ngFor="let current of _agendaStatusService.entities" [value]="current.id">
+               <div class="circle-select"[style]="{background: '#'+current.color}" ></div>
+               {{current.name}}
+            </ng-option>
+         </ng-select>
+         <div class="btns-colors">
+            
+            <!-- <div class="d-flex align-items-center">
+               <input type="radio" name="radioColor" id="colorBtn1" class="radio-color">
+               <label class="colorBtn1" for="colorBtn1"></label>
+            </div>
+            <div class="d-flex align-items-center">
+               <input type="radio" name="radioColor" id="colorBtn2" class="radio-color">
+               <label class="colorBtn2" for="colorBtn2"></label>
+            </div>
+            <div class="d-flex align-items-center">
+               <input type="radio" name="radioColor" id="colorBtn3" class="radio-color">
+               <label class="colorBtn3" for="colorBtn3"></label>
+            </div>
+            <div class="d-flex align-items-center">
+               <input type="radio" name="radioColor" id="colorBtn4" class="radio-color">
+               <label class="colorBtn4" for="colorBtn4"></label>
+            </div>
+            <div class="d-flex align-items-center">
+               <input type="radio" name="radioColor" id="colorBtn5" class="radio-color">
+               <label class="colorBtn5" for="colorBtn5"></label>
+            </div> -->
+         </div>
+     </div>
+     
+       <button [disabled]="!form.valid" type="button" (click)="submit()" class="btn-send mx-auto mt-4 d-block">{{'Submit' | translate}}</button>
+   </div>
+ </section>

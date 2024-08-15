@@ -1,0 +1,54 @@
+<div [formGroup]="form">
+   <div [ngClass]="language=='en'?'filter-top':'filter-top pagedirection'">
+      <div class="row align-items-end">
+         <div class="col-md-6">
+            <div class="form-group">
+               <label for="date">{{'Date' | translate}}</label>
+               <div class="both-inputs">
+                  <div class="d-flex align-items-center box-date">
+                     <span>{{'From' | translate}}</span>
+                     <input formControlName="startDate" type="date" id="startDate" name="startDate" class="form-control">
+                  </div>
+                  <div class="d-flex align-items-center box-date">
+                     <span>{{'To' | translate}}</span>
+                     <input formControlName="endDate" type="date" id="endDate" name="endDate" class="form-control">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-5">
+            <div class="form-group">
+               <label for="state">{{'StateLabel' | translate}}</label>
+               <select formControlName="principalityId" id="state">
+                  <option [value]="null" selected>{{'All' | translate}}</option>
+                  <option *ngFor="let current of principalityResponse" [value]="current.id">{{language=='en'? current.name : current.nameAR}}</option>
+               </select>
+            </div>
+         </div>
+         <div class="col-md-5">
+            <div class="form-group">
+               <label for="gender">{{'Gender' | translate}}</label>
+               <select formControlName="genderId" id="gender">
+                  <option [value]="null" selected>{{'All' | translate}}</option>
+                  <option *ngFor="let current of genderResponse" [value]="current.id">{{language=='en'? current.name : current.nameAR}}</option>
+               </select>
+            </div>
+         </div>
+         <div class="col-md-5">
+            <div class="form-group">
+               <label for="degree">{{'Degree' | translate}}</label>
+               <select formControlName="degreeId" name="degree" id="degree">
+                  <option [value]="null" selected>{{'All' | translate}}</option>
+                  <option *ngFor="let current of degreeResponse" [value]="current.id">{{language=='en'? current.name : current.nameAR}}</option>
+               </select>
+            </div>
+         </div>
+         <div class="col-md-2">
+            <div class="form-group">
+               <button (click)="submit()" type="button">{{'Show results' | translate}}</button>
+            </div>
+         </div>
+      </div>
+
+   </div>
+</div>

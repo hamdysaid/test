@@ -1,0 +1,35 @@
+<div  [ngClass]="language=='en'?'modal-content':'modal-content pagedirection'">
+    <div class="modal-header">
+        <h5 class="modal-title">{{'Create Vacation' | translate}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('')"></button>
+    </div>
+    <div class="modal-body">
+        <div [formGroup]="form">
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label for="">{{'Vacation Type' | translate}}</label>
+                        <div class="box-inputs">
+                            <select formControlName="VacationTypeId" name="VacationTypeId" id="VacationTypeId" class="form-control" placeholder="123148">
+                                <option *ngFor="let vacationType of vacationTypes" [value]="vacationType.id">{{translateService.currentLang==='en'?vacationType.nameEN:vacationType.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label for="">{{'Date start' | translate}}</label>
+                    <input formControlName="StartDate" class="form-control" type="date" name="StartDate" id="StartDate" />
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label for="">{{'Date end' | translate}}</label>
+                    <input formControlName="EndDate" class="form-control" type="date" name="EndDate" id="EndDate" />
+                </div>
+                <div class="col-md-12 mt-3">
+                    <label for="">{{'Note' | translate}}</label>
+                    <textarea formControlName="Note" class="form-control" name="Note" id="Note" ></textarea>
+                </div>
+            </div>
+            <button [disabled]="!vacationTypes.length" (click)="submit()" type="button" class="btn btn-primary mt-3">{{'Submit' | translate}}</button>
+        </div>
+    </div>
+</div>

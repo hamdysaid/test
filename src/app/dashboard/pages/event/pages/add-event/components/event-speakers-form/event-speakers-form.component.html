@@ -1,0 +1,47 @@
+<div *ngIf="!loading else loadingTemplate"  [ngClass]="language=='en'?'add-eventNew':'add-eventNew pagedirection'">
+    <div [formGroup]="eventSpeakerForm" class="form-Event-schedule">
+        <div class='file file--upload'>
+            <label for='imgSpeacker'>
+                <img [src]="img" alt="uploadImage">
+                <div>
+                    {{'Upload a photo' | translate}}
+                    <span>PNG or JPG</span>
+                </div>
+            </label>
+            <input (change)="onFileChange($event)" formControlName="image" id='imgSpeacker' type='file' />
+        </div>
+        <div class="form-group">
+            <label for="fullName">{{'Full name' | translate}}</label>
+            <div class="box-input">
+                <input formControlName="fullName" class type="text" id="fullName" name="fullName" class="form-control">
+                <img src="../../../../../../../../assets/images/userInfo.svg" alt="location-event">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fullNameAR">{{'Full name AR' | translate}}</label>
+            <div class="box-input">
+                <input formControlName="fullNameAR" class type="text" id="fullNameAR" name="fullNameAR" class="form-control">
+                <img src="../../../../../../../../assets/images/userInfo.svg" alt="location-event">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="specialization">{{'specialization' | translate}}</label>
+            <input formControlName="specialization" type="text" id="specialization" name="specialization" class="form-control input-event">
+        </div>
+        <div class="form-group">
+            <label for="specializationAR">{{'specializationAR' | translate}}</label>
+            <input formControlName="specializationAR" type="text" id="specializationAR" name="specializationAR" class="form-control input-event">
+        </div>
+        <div class="form-group">
+            <button [disabled]="!eventSpeakerForm.valid" (click)="submit()"  type="button" class="btn-send">{{'Add' | translate}}</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #loadingTemplate>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 data-text="Loading...">Loading ....</h1>
+        </div>
+    </div>
+</ng-template>

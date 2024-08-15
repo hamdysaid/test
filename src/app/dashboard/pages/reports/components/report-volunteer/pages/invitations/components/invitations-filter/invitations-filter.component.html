@@ -1,0 +1,45 @@
+<div [formGroup]="form">
+   <div  [ngClass]="language=='en'?'filter-top':'filter-top pagedirection'">
+      <div class="row align-items-end">
+         <div class="col-md-4">
+            <div class="form-group">
+               <label for="date">{{'Volunteer times' | translate}}</label>
+               <div class="both-inputs">
+                  <div class="d-flex align-items-center box-date">
+                     <span>{{'From' | translate}}</span>
+                     <input formControlName="startTime" type="time" id="startDate" name="startDate" class="form-control">
+                  </div>
+                  <div class="d-flex align-items-center box-date">
+                     <span>{{'To' | translate}}</span>
+                     <input formControlName="endTime" type="time" id="endDate" name="endDate" class="form-control">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="form-group">
+               <label for="statusId">{{'StatusInvitationReport' | translate}}</label>
+
+               <select formControlName="statusId" id="status">
+                  <option [value]="null" selected>{{'All' | translate}}</option>
+                  <option *ngFor="let current of _invitationStatusService.entities" [value]="current.id">{{current.name}}</option>
+               </select>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="form-group">
+               <label for="state">{{'StateLabel' | translate}}</label>
+               <select formControlName="principalityId" id="state">
+                  <option [value]="null" selected>{{'All' | translate}}</option>
+                  <option *ngFor="let current of principalityResponse" [value]="current.id">{{language=='en'? current.name : current.nameAR}}</option>
+               </select>
+            </div>
+         </div>
+         <div class="col-md-2">
+            <div class="form-group">
+               <button type="button" (click)="submit()">{{'Show results' | translate}}</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

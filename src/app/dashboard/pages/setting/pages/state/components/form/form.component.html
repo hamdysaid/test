@@ -1,0 +1,21 @@
+<div [formGroup]="form" class="form-setting">
+    <div class="row border-bottom pb-2">
+        <div class="col-md-5">
+            <div class="form-group mt-1">
+                <label for="state">{{'State' | translate}}</label>
+                <input formControlName="name" type="text" id="state" name="state" class="form-control input-setting">
+                <em *ngIf="validation.validateControl('name')">Please Enter name</em>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group mt-1">
+                <label for="state">{{'StateAR' | translate}}</label>
+                <input formControlName="nameAR" type="text" id="state" name="state" class="form-control input-setting">
+                <em *ngIf="validation.validateControl('nameAR')">Please Enter nameAR</em>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button [disabled]="!form.valid" (click)="submit()" type="button" class="btn-send btn-access">{{'Save State' | translate}}</button>
+        </div>
+    </div>
+</div>

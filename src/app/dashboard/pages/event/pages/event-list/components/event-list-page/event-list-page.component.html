@@ -1,0 +1,70 @@
+
+<section  [ngClass]="language=='en'?'section-event':'section-event filterdirection'">
+    <div class="container-padding">
+        <div class="section-event-boxs">
+            <div class="row">
+                <div class="col-md-3">
+                    <a [routerLink]="'../add-event'">
+                        <div class="box-add">
+                            <img src="../../../../../../../../assets/images/plusWithBack.svg" alt="add">
+                            <p>{{'Add New Event' | translate}}</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3"    
+                 *ngFor="let current of _eventService.pagenationEntities.data
+                | paginate
+                : {
+                    id: 'server',
+                    itemsPerPage: _eventService.pagenationEntities.pagination.pageSize,
+                    currentPage: _eventService.pagenationEntities.pagination.currentPage,
+                    totalItems: _eventService.pagenationEntities.pagination.rowCount
+                  }
+                  ;let i = index;">
+                    <div class="box-event">
+                        <img  (click)="deleteItem(current.id)"  src="../../../../../../../../assets/images/trash-event.svg" alt="trash-event" class="trash-event">
+                        <img (click)="GoToEditEvent(current.id)" src="../../../../../../../../assets/images/edit.svg" alt="edit-event" class="edit-event">
+                        <div  [routerLink]="'../event-view/'+current.id">
+                        <img [src]="imagePath.normal + current.hallImage" alt="eventImage" class="eventImage">
+                        <h3>{{current.name}}</h3>
+                        <h5>{{current.description}}</h5>
+                        <p>
+                            <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="calendarad">
+                            <span>{{current.startDate | date}} _ {{current.endDate | date}}</span>
+                            <img src="../../../../../../../../assets/images/locationModal.svg" alt="location-event" class="ms-2">
+                            <span>{{current.locationLink}}</span>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+             
+            </div>
+            <pagination-controls
+            previousLabel="{{'Previous' | translate}}"
+            nextLabel="{{'Next' | translate}}"
+            (pageChange)="_eventService.GetPagenation($event)"
+            id="server"
+          ></pagination-controls>
+        </div>
+    </div>
+</section>
+<style>
+
+</style>
+
+
+
+
+<swal
+#delete
+title="{{'Delete Event' | translate}} !!!"
+text="{{'Delete confirmation - All related information will be deleted.' | translate}}"
+imageUrl="/assets/images/Delete.gif"
+imageHeight="20vh"
+cancelButtonText="{{'Cancel' | translate}}"
+confirmButtonText="{{'Yes' | translate}}"
+confirmButtonColor="red"
+[showCancelButton]="true"
+[focusCancel]="true"
+>
+</swal>

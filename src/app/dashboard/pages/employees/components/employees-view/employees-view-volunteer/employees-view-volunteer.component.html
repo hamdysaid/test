@@ -1,0 +1,136 @@
+<div class="scrollbar-Volunteer" id="style-Volunteer">
+   <div class="boxs-Volunteer">
+      <h3> {{'Volunteer' | translate}} <span>({{Invitations.length}})</span></h3>
+      <div *ngFor="let current of Invitations" class="boxs-Volunteer-height" (click)="clickToShowInvitation(current.id)">
+         <h4>{{current.jopTitle}}</h4>
+         <p>{{current.description}}</p>
+         <div class="boxs-Volunteer-height-flex d-flex align-items-center justify-content-between">
+            <div>
+               <img src="../../../../../../../../assets/images/clock.svg" alt="clock" class="icon-svg">
+               <span class="ps-0">{{current.numberOfHours}}h</span>
+               <img src="../../../../../../../../assets/images/calendaradd.svg" alt="clock" class="icon-svg">
+               <span class="ps-0">{{current.fromStart | date}} _ {{current.toEnd | date}}</span>
+               <span *ngFor="let day of current.classDateTimes">{{getDay(day.day)}}</span>
+            </div>
+            <div>
+               <img [src]="imagePath.normal + current.volunteerUser.image" alt="user">
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<ng-template #modalDetails let-close="close">
+   <div class="modal-add-volunteer">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div [formGroup]="invitationForm">
+               <input type="number" hidden formControlName="id">
+               <div class="modal-body pt-0">
+                  <img src="../../../../../../../../assets/images/check-circle.svg" alt="check-circle" class="img-check check-success">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label for="">{{'Job Title' | translate}}</label>
+                           <input readonly formControlName="jopTitle" type="text" class="form-control volunteer-input">
+                        </div>
+                        <div class="form-group">
+                           <label for="jopTitleAR">{{'Job Title' | translate}}</label>
+                           <input readonly formControlName="jopTitleAR" type="text" class="form-control volunteer-input">
+                        </div>
+                        <div class="form-group">
+                           <label for="description">{{'Description' | translate}}</label>
+                           <textarea readonly formControlName="description" name="description" id="description" class="form-control volunteer-input"></textarea>
+                        </div>
+                        <div class="form-group">
+                           <label for="descriptionAR">{{'DescriptionAR' | translate}}</label>
+                           <textarea readonly formControlName="descriptionAR" name="descriptionAR" id="descriptionAR" class="form-control volunteer-input"></textarea>
+                        </div>
+                        <div class="form-group">
+                           <label for="volunteerTimes">{{'Volunteer times' | translate}}</label>
+                           <div class="d-flex align-items-center volunteerTimes">
+                              <div class="box-inputs me-3">
+                                 <label for="startDate">From</label>
+                                 <input readonly formControlName="fromStart" type="date" class="form-control">
+                              </div>
+                              <div class="box-inputs">
+                                 <label for="startDate">To</label>
+                                 <input readonly formControlName="toEnd" type="date" class="form-control">
+                              </div>
+                           </div>
+
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="numberHours">{{'Number hours' | translate}}</label>
+                                 <div class="box-icon">
+                                    <input readonly formControlName="numberOfHours" type="text" class="form-control">
+                                    <img src="../../../../../../../../assets/images/clock.svg" alt="location">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="numberDays">{{'Number days' | translate}}</label>
+                                 <div class="box-icon">
+                                    <input readonly formControlName="numberOfDays" type="text" class="form-control">
+                                    <img src="../../../../../../../../assets/images/calenderAgenda.svg" alt="location">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                           <label for="">{{'Volunteer days' | translate}}</label>
+                           <div class="row button-form">
+                              <select multiple formControlName="daysAsString" class="select-public">
+                                 <option *ngFor="let current of dayOfWeek" [value]="current.id">{{language=='en'? current.nameOfDay : current.nameOfDayAr}}</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="form-group mt-4">
+                           <label for="volunteerDate">{{'Date' | translate}}</label>
+                           <div class="d-flex align-items-center volunteerTimes">
+                              <div class="box-inputs me-3">
+                                 <label for="startDate">From</label>
+                                 <input readonly formControlName="start" type="time" class="form-control">
+                              </div>
+                              <div class="box-inputs">
+                                 <label for="startDate">To</label>
+                                 <input readonly formControlName="end" type="time" class="form-control">
+                              </div>
+                           </div>
+
+                        </div>
+                        <div class="form-group">
+                           <label for="address">{{'Address' | translate}}</label>
+                           <div class="box-icon">
+                              <input readonly formControlName="addressHint" type="text" class="form-control">
+                              <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="address">{{'Address Link' | translate}}</label>
+                           <div class="box-icon">
+                              <input readonly formControlName="addressLink" type="text" class="form-control">
+                              <img src="../../../../../../../../assets/images/locationModal.svg" alt="location">
+                           </div>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+               <div class="modal-footer justify-content-center pt-0">
+                  <button type="button" class="btn-hide" (click)="close()">{{'Cancel' | translate}}</button>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+
+</ng-template>

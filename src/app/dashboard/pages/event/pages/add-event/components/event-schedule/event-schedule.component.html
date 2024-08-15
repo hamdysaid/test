@@ -1,0 +1,21 @@
+<div [ngClass]="language=='en'?'add-eventNew':'add-eventNew pagedirection'">
+<div class="boxs-events">
+    <div *ngFor="let current of _eventScheduleService.entitisFrCurrentEvent" class="box-event-new">
+        <div class="d-flex align-items-center justify-content-between box-event-flex">
+            <div class="align-element">
+               <img src="../../../../../../../../assets/images/clock.svg" alt="clock">
+               <span>{{'From' | translate}}</span>
+               <span><b>{{current.startHour}}</b></span>
+               <span>{{'To' | translate}}</span>
+               <span><b>{{current.endHour}}</b></span>
+            </div>
+            <div class="tools">
+                <img src="../../../../../../../../assets/images/trash-event.svg" alt="trash-event" class="me-2">
+                <img src="../../../../../../../../assets/images/edit.svg" alt="edit-event">
+            </div>
+        </div>
+        <p>{{current.description}}
+        </p>
+    </div>
+</div>
+</div>
